@@ -1,0 +1,21 @@
+<h1>Iniciar Sesión</h1>
+<form [formGroup]="loginForm">
+  <div class="form-group mb-3">
+    <label for="user_type">Tipo de Usuario:</label>
+    <select class="form-control" id="user_type" formControlName="user_type" required>
+      <option value="" disabled selected>Seleccione su tipo de usuario</option>
+      <option value="estudiante">Estudiante</option>
+      <option value="especialista">Especialista</option>
+      <option value="administrador">Administrador</option>
+    </select>
+  </div>
+  <div class="form-group mb-3">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" placeholder="Consigne su email" formControlName="email" required>
+  </div>
+  <div class="form-group mb-3">
+    <label for="contrasenia">Contraseña:</label>
+    <input type="password" class="form-control" id="contrasenia" placeholder="Consigne su contraseña" formControlName="contrasenia" required>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="onSubmit()">Entrar</button>
+</form>
