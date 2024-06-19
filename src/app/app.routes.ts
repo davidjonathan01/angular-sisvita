@@ -5,15 +5,22 @@ import { RealizarTestComponent } from './component/realizar-test/realizar-test.c
 import { StudentDashboardComponent } from './component/student-dashboard/student-dashboard.component';
 import { SpecialistDashboardComponent } from './component/specialist-dashboard/specialist-dashboard.component';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { RegistrarEstudianteComponent } from './component/registrar-estudiante/registrar-estudiante.component';
+import { AboutComponent } from './component/about/about.component';
+import { ContactComponent } from './component/contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  {path: 'about', component: AboutComponent},
+  {path: 'contact', component: ContactComponent},
   { path: 'realizar-test', component: RealizarTestComponent },
   { path: 'student-dashboard', component: StudentDashboardComponent },
   { path: 'specialist-dashboard', component: SpecialistDashboardComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent}
+  { path: 'admin-dashboard', component: AdminDashboardComponent},
+  { path: 'registrar-estudiante', component: RegistrarEstudianteComponent}
+
 ];
 
 // Exportación de las rutas
