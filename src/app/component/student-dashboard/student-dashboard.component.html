@@ -1,1 +1,25 @@
-<p>student-dashboard works!</p>
+<div class="dashboard-container">
+    <div class="sidebar">
+      <ul>
+        <li (click)="showForm('realizar-test')">Realizar Test</li>
+        <li (click)="showForm('modify')">Modificar Test</li>
+        <li (click)="showForm('results')">Resultados</li>
+        <li (click)="showForm('calendar')">Calendario</li>
+        <li (click)="showForm('services')">Otros Servicios</li>
+        <li (click)="showForm('inbox')">Bandeja de Entrada</li>
+      </ul>
+      <div class="back-button">
+        <img src="path/to/back-icon.png" alt="Back">
+      </div>
+    </div>
+    <div class="content">
+      <h2 *ngIf="activeForm === 'realizar-test'">Realizar Test de Ansiedad</h2>
+      <app-realizar-test *ngIf="activeForm === 'realizar-test'"></app-realizar-test>
+
+      <h2 *ngIf="activeForm === 'results'">Ver Resultados</h2>
+      <app-results *ngIf="activeForm === 'results'"></app-results>
+      
+      <!-- Puedes agregar más secciones según sea necesario -->
+    </div>
+  </div>
+  
