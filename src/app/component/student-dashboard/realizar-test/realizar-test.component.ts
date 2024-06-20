@@ -4,6 +4,7 @@ import { Test } from '../../../model/test';
 import { TestService } from '../../../services/test.service';
 import { Pregunta } from '../../../model/pregunta';
 import { Opcion } from '../../../model/opcion';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-realizar-test',
   standalone: true,
@@ -17,7 +18,9 @@ export class RealizarTestComponent implements OnInit {
   opciones: Opcion[]=[];
 
   selectedTestId: number | null = null;
-  respuestas: string[] = [];
+  respuestasSeleccionadas: number[] = []; // Almacenar los puntajes seleccionados
+  allQuestionsAnswered: boolean = false; // Nuevo estado para verificar si todas las preguntas han sido respondidas
+
 
   constructor(private testService: TestService) {}
 
@@ -39,7 +42,6 @@ export class RealizarTestComponent implements OnInit {
   onSelectTest(id_test: number) {
     this.selectedTestId = id_test;
     this.loadPreguntas(id_test);
-    //this.setRespuestas(id_test);
     this.loadOpciones(id_test);
   }
 
@@ -47,6 +49,8 @@ export class RealizarTestComponent implements OnInit {
     this.testService.getPreguntasPorTest(id_test).subscribe(
       (result: any) => {
         this.preguntas = result.data;
+        this.respuestasSeleccionadas = new Array(this.preguntas.length).fill(null); // Inicializar con valores nulos
+        this.checkAllQuestionsAnswered(); // Verificar si todas las preguntas han sido respondidas al cargar nuevas preguntas
       },
       (err: any) => {
         console.error('Error al cargar preguntas', err);
@@ -64,17 +68,41 @@ export class RealizarTestComponent implements OnInit {
       }
     );
   }
+  onSelectOption(index: number, puntaje: number) {
+    this.respuestasSeleccionadas[index] = puntaje;
+    this.checkAllQuestionsAnswered();
+  }
 
-  /*setRespuestas(testId: number) {
-    // Define las opciones de respuesta específicas para cada tipo de test
-    if (testId === 1) { // ID del test de Zung
-      this.respuestas = ["Muy pocas veces", "Algunas veces", "Muchas veces", "Casi siempre"];
-    } else if (testId === 2) { // ID del test de Stai
-      this.respuestas = ["Nunca", "Raramente", "Algunas veces", "Frecuentemente"];
-    } else if (testId === 3) { // ID del test de BAI
-      this.respuestas = ["No en absoluto", "Levemente", "Moderadamente", "Severamente"];
-    } else {
-      this.respuestas = [];
-    }
-  }*/
+  checkAllQuestionsAnswered() {
+    this.allQuestionsAnswered = this.respuestasSeleccionadas.every(resp => resp !== null);
+  }
+
+  enviarTest() {
+    const evaluacion = {
+      id_test: this.selectedTestId,
+      id_paciente: 1,  // Aquí debes agregar el ID del paciente real
+      respuestas: this.respuestasSeleccionadas
+    };
+
+    this.testService.realizarEvaluacion(evaluacion).subscribe(
+      (result: any) => {
+        console.log('Evaluación realizada con éxito', result);
+        Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Test enviado ...',
+            text: 'Se realizó correctamente el test!',
+          });
+      },
+      (err: any) => {
+        console.error('Error al realizar la evaluación', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error ...',
+          text: 'Error al realizar el test!',
+        });
+      }
+    );
+  }
+
 }

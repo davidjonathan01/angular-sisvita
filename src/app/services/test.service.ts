@@ -26,4 +26,7 @@ export class TestService {
     getOpcionesPorTest(id_test: number):Observable<string []>{
       return this.http.get<string[]>(`${this.BASE_URL}/cus_realizar_test/get_opciones/${id_test}`);
     }
+    realizarEvaluacion(evaluacion: any): Observable<any> {
+      return this.http.post<any>(`${this.BASE_URL}/cus_realizar_test/realizar_evaluacion`, evaluacion);
+    }
 }
