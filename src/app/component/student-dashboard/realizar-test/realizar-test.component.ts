@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Test } from '../../../model/test';
 import { TestService } from '../../../services/test.service';
 import { Pregunta } from '../../../model/pregunta';
-
+import { Opcion } from '../../../model/opcion';
 @Component({
   selector: 'app-realizar-test',
   standalone: true,
@@ -14,6 +14,8 @@ import { Pregunta } from '../../../model/pregunta';
 export class RealizarTestComponent implements OnInit {
   tests: Test[] = [];
   preguntas: Pregunta[] = [];
+  opciones: Opcion[]=[];
+
   selectedTestId: number | null = null;
   respuestas: string[] = [];
 
@@ -34,14 +36,15 @@ export class RealizarTestComponent implements OnInit {
     );
   }
 
-  onSelectTest(testId: number) {
-    this.selectedTestId = testId;
-    this.loadPreguntas(testId);
-    this.setRespuestas(testId);
+  onSelectTest(id_test: number) {
+    this.selectedTestId = id_test;
+    this.loadPreguntas(id_test);
+    //this.setRespuestas(id_test);
+    this.loadOpciones(id_test);
   }
 
-  loadPreguntas(testId: number) {
-    this.testService.getPreguntasPorTest(testId).subscribe(
+  loadPreguntas(id_test: number) {
+    this.testService.getPreguntasPorTest(id_test).subscribe(
       (result: any) => {
         this.preguntas = result.data;
       },
@@ -51,7 +54,18 @@ export class RealizarTestComponent implements OnInit {
     );
   }
 
-  setRespuestas(testId: number) {
+  loadOpciones(id_test:number){
+    this.testService.getOpcionesPorTest(id_test).subscribe(
+      (result: any) => {
+        this.opciones = result.data;
+      },
+      (err: any) => {
+        console.error('Error al cargar opciones', err);
+      }
+    );
+  }
+
+  /*setRespuestas(testId: number) {
     // Define las opciones de respuesta específicas para cada tipo de test
     if (testId === 1) { // ID del test de Zung
       this.respuestas = ["Muy pocas veces", "Algunas veces", "Muchas veces", "Casi siempre"];
@@ -62,5 +76,5 @@ export class RealizarTestComponent implements OnInit {
     } else {
       this.respuestas = [];
     }
-  }
+  }*/
 }

@@ -13,15 +13,17 @@ export class TestService {
 
     constructor(private http: HttpClient){
         this.BASE_URL=getConexionBackend();
-        this.BASE_URL=`${this.BASE_URL}/test_routes/`
-        console.log(this.BASE_URL)
     }
 
     getTests(): Observable<Test[]> {
-        return this.http.get<Test[]>(`${this.BASE_URL}get_tests`);
+        return this.http.get<Test[]>(`${this.BASE_URL}/test_routes/get_tests`);
     }
     
     getPreguntasPorTest(id_test: number): Observable<string[]> {
-        return this.http.get<string[]>(`${this.BASE_URL}get_preguntas/${id_test}`);
-      }
+        return this.http.get<string[]>(`${this.BASE_URL}/cus_realizar_test/get_preguntas/${id_test}`);
+    }
+
+    getOpcionesPorTest(id_test: number):Observable<string []>{
+      return this.http.get<string[]>(`${this.BASE_URL}/cus_realizar_test/get_opciones/${id_test}`);
+    }
 }

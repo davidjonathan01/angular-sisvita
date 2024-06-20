@@ -3,6 +3,6 @@ export interface Test {
     nombre: string;
     descripcion: string;
     n_preguntas: number;
-    version: string;
-    idioma: string;
+    n_version: string;
+    id_idioma: number;
 }
