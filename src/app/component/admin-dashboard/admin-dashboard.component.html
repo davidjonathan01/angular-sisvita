@@ -1,9 +1,4 @@
-<div class="container">
-  <h1>Bienvenido Administrador</h1>
-  <p>¡Has iniciado sesión correctamente en el panel de administración!</p>
-  <p>Desde aquí puedes gestionar usuarios, contenido, configuraciones y más.</p>
-  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
-</div>
+
 <div class="dashboard-container">
   <div class="sidebar">
     <ul>
@@ -21,6 +16,12 @@
     </div>
   </div>
   <div class="content">
+    <div class="container">
+      <h1>Bienvenido Administrador</h1>
+      <p>¡Has iniciado sesión correctamente en el panel de administración!</p>
+      <p>Desde aquí puedes gestionar usuarios, contenido, configuraciones y más.</p>
+      <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+    </div>
     <h2 *ngIf="activeForm === 'modifify'">Modificar Resultados</h2>
     <h2 *ngIf="activeForm === 'Pacientes'">Ver Pacientes</h2>
     <h2 *ngIf="activeForm === 'tests_calificar'">Test Pendientes</h2>

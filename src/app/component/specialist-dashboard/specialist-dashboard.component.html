@@ -1,11 +1,7 @@
-<div class="container">
-  <h1>Bienvenido Especialista</h1>
-  <p>¡Has iniciado sesión correctamente como especialista!</p>
-  <p>Desde aquí puedes acceder a herramientas y recursos especializados para brindar apoyo a los usuarios.</p>
-  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
-</div>
+
 
 <div class="dashboard-container">
+  
   <div class="sidebar">
     <ul>
       <li (click)="showForm('evaluate')">Evaluar Resultados Test</li>
@@ -22,6 +18,12 @@
     </div>
   </div>
   <div class="content">
+    <div class="container">
+      <h1>Bienvenido Especialista</h1>
+      <p>¡Has iniciado sesión correctamente como especialista!</p>
+      <p>Desde aquí puedes acceder a herramientas y recursos especializados para brindar apoyo a los usuarios.</p>
+      <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+    </div>
     <!--<h2 *ngIf="activeForm === 'evaluate'">Resultados Recibidos</h2>-->
     <app-evaluar-resultados-test *ngIf="activeForm === 'evaluate'"></app-evaluar-resultados-test>
 
