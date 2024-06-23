@@ -12,7 +12,7 @@
     <h3>Preguntas del Test Seleccionado:</h3>
     <ul>
       <div *ngFor="let pregunta of preguntas; let i = index">
-        <h5>{{pregunta.interrogante }}</h5>
+        <h6>{{pregunta.interrogante }}</h6>
         <div *ngFor="let opcion of opciones" class="form-check">
           <input class="form-check-input" type="radio" name="opcion{{ pregunta.id_pregunta }}" id="opcion{{ pregunta.id_pregunta }}{{ opcion.id_opcion }}" (change)="onSelectOption(i, opcion.puntaje)">
           <label class="form-check-label" for="opcion{{ pregunta.id_pregunta }}{{ opcion.id_opcion }}">

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <h2 class="text-center">Resultados Recibidos</h2>
+  <div *ngFor="let resultado of resultados" class="resultado-card">
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <!--<h5 class="card-title text-center">Resultado de Ansiedad</h5>-->
+          <div class="row">
+            <div class="col-md-6">
+              <h6>Paciente</h6>
+              <p><strong>Nombres:</strong> {{ resultado.evaluacion.paciente.nombres }}</p>
+              <p><strong>Apellidos:</strong> {{ resultado.evaluacion.paciente.apellidos }}</p>
+              <p><strong>Documento de Identidad:</strong> {{ resultado.evaluacion.paciente.doc_identidad }}</p>
+              <p><strong>Dirección:</strong> {{ resultado.evaluacion.paciente.direccion }}</p>
+            </div>
+            <div class="col-md-6">
+              <h6>Evaluación</h6>
+              <p><strong>Test:</strong> {{ resultado.evaluacion.test.nombre }}</p>
+              <p><strong>N° preguntas:</strong> {{ resultado.evaluacion.test.n_preguntas }}</p>
+              <p><strong>Versión:</strong> {{ resultado.evaluacion.test.n_version }}</p>
+              <p><strong>Puntaje:</strong> {{ resultado.puntaje }}</p>
+              <p><strong>Fecha de realización:</strong> {{ resultado.evaluacion.fec_realizacion | date }}</p>
+              <p><strong>Nivel de ansiedad:</strong> {{ resultado.escala.nombre }}</p>
+            </div>
+          </div>
+          <div class="interpretacion mt-3">
+            <h6>Interpretación</h6>
+            <textarea class="form-control" [(ngModel)]="resultado.interpretacion" rows="3" placeholder="Ingrese su observacion"></textarea>
+            <button class="btn btn-primary mt-2" (click)="culminarResultado(resultado)">Guardar Interpretación</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

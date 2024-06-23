@@ -1,65 +1,74 @@
+/* Contenedor principal */
 .dashboard-container {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    background-color: #e0f7fa; /* Color de fondo similar al de la imagen */
-  }
-  
-  .sidebar {
-    width: 20%;
-    background-color: #b2ebf2;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    padding: 10px 0;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .back-button {
-    align-self: flex-start;
-  }
-  
-  .back-button img {
-    width: 30px;
-    cursor: pointer;
-  }
-  
-  .content {
-    width: 80%;
-    padding: 20px;
-    background-color: #fffde7;
-  }
-  
-  .content h2 {
-    text-align: center;
-  }
-  
-  .form-container {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
-  .save-icon {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-  }
-  
-  .save-icon img {
-    width: 30px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background-color: #e0f7fa; /* Fondo celeste claro */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 20%;
+  background-color: #b2ebf2; /* Fondo celeste intermedio */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px 0;
+  font-weight: bold;
+  color: #004d40; /* Texto celeste muy oscuro */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar li:hover {
+  background-color: #80deea; /* Celeste más claro al pasar el ratón */
+}
+
+.back-button {
+  align-self: flex-start;
+}
+
+.back-button img {
+  width: 30px;
+  cursor: pointer;
+}
+
+/* Contenido */
+.content {
+  width: 80%;
+  padding: 20px;
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+.content h2 {
+  text-align: center;
+  color: #00796b; /* Título celeste oscuro */
+}
+
+.form-container {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.save-icon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.save-icon img {
+  width: 30px;
+  cursor: pointer;
+}

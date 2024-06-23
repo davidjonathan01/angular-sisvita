@@ -1,0 +1,32 @@
+/* Estilos para el contenido principal */
+.container.py-5 {
+    background-color: #f0f7fb; /* Fondo azul claro */
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .container.py-5 h1.display-4 {
+    color: #1565c0; /* Azul principal para títulos */
+  }
+  
+  .container.py-5 p.lead {
+    color: #424242; /* Gris oscuro para párrafos */
+  }
+  
+  .container.py-5 h3 {
+    color: #1565c0; /* Azul principal para subtítulos */
+  }
+  
+  .container.py-5 ul {
+    color: #424242; /* Gris oscuro para listas */
+  }
+  
+  /* Estilos para el pie de página */
+  footer.bg-dark {
+    background-color: #1c2331; /* Fondo azul oscuro */
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  /* Estilos adicionales si es necesario */

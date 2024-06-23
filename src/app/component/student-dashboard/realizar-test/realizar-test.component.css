@@ -1,7 +1,74 @@
+realizar test.css
+/* Contenedor del formulario */
 .form-container {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #e1f5fe; /* Celeste claro */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Centra el contenido */
+}
+
+/* Título del formulario */
+.form-container h2 {
+  font-size: 2rem;
+  color: #0288d1; /* Azul */
+  margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Radio buttons y etiquetas */
+.form-check {
+  margin-bottom: 10px;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+.form-check-label {
+  font-size: 1rem;
+  color: #333; /* Gris oscuro */
+}
+
+/* Preguntas del test */
+.form-container h3 {
+  font-size: 1.5rem;
+  color: #0288d1; /* Azul */
+  margin-top: 20px; /* Espaciado superior */
+}
+
+/* Opciones de respuesta */
+.form-container .form-check {
+  margin-bottom: 8px;
+}
+
+.form-container .form-check-input {
+  margin-right: 8px;
+}
+
+.form-container .form-check-label {
+  font-size: 1rem;
+  color: #333; /* Gris oscuro */
+}
+
+/* Botón de enviar */
+.form-container button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1.25rem;
+  background-color: #0288d1; /* Azul */
+  border: none;
+  border-radius: 4px;
+  color: #fff; /* Texto blanco */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-container button:disabled {
+  background-color: #b0bec5; /* Azul más claro cuando está deshabilitado */
+  cursor: not-allowed;
+}
+
+.form-container button:hover:not(:disabled) {
+  background-color: #01579b; /* Azul más oscuro al pasar el ratón */
+}

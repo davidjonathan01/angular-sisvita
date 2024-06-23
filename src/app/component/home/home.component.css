@@ -1,0 +1,79 @@
+/* Estilo global */
+body {
+    font-family: 'Roboto', sans-serif; /* Cambia la fuente a Roboto para un look más moderno */
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Contenedor principal centrado */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Estilo de la columna central */
+  .col-md-8 {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra el contenido */
+  }
+  
+  /* Título principal */
+  h1.display-4 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00796b; /* Celeste oscuro */
+    margin-bottom: 20px;
+  }
+  
+  /* Párrafos principales */
+  .lead {
+    font-size: 1.25rem;
+    color: #004d40; /* Celeste muy oscuro */
+    margin-bottom: 20px;
+  }
+  
+  /* Espaciado adicional para la sección de botones */
+  .mt-5 {
+    margin-top: 3rem !important;
+  }
+  
+  /* Botones */
+  .btn-primary {
+    background-color: #00acc1; /* Celeste intermedio */
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px; /* Aumenta el padding para más espacio */
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #00838f; /* Celeste más oscuro al pasar el ratón */
+  }
+  
+  .btn-outline-primary {
+    border: 2px solid #00acc1; /* Celeste intermedio */
+    color: #00acc1; /* Celeste intermedio */
+    border-radius: 50px;
+    padding: 12px 24px; /* Aumenta el padding para más espacio */
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #00acc1; /* Celeste intermedio */
+    color: #ffffff;
+  }
+  
+  /* Espaciado entre botones */
+  .me-3 {
+    margin-right: 1.5rem !important; /* Aumenta el margen entre botones */
+  }

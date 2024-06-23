@@ -1,19 +1,21 @@
-<h1>Iniciar Sesión</h1>
-<form [formGroup]="loginForm">
-  <div class="form-group mb-3">
-    <label for="id_tipo_usuario">Tipo de Usuario:</label>
-    <select class="form-control" id="id_tipo_usuario" formControlName="id_tipo_usuario" required>
-      <option value="" disabled selected>Seleccione su tipo de usuario</option>
-      <option *ngFor="let tipo of tipo_usuarios" [value]="tipo.id_tipo_usuario">{{ tipo.nombre }}</option>
-    </select>
-  </div>
-  <div class="form-group mb-3">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" id="email" placeholder="Consigne su email" formControlName="email" required>
-  </div>
-  <div class="form-group mb-3">
-    <label for="contrasenia">Contraseña:</label>
-    <input type="password" class="form-control" id="contrasenia" placeholder="Consigne su contraseña" formControlName="contrasenia" required>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="onSubmit()">Entrar</button>
-</form>
+<div class="container">
+  <form [formGroup]="loginForm">
+    <h1>Iniciar Sesión</h1>
+    <div class="form-group mb-3">
+      <label for="id_tipo_usuario">Tipo de Usuario:</label>
+      <select class="form-control" id="id_tipo_usuario" formControlName="id_tipo_usuario" required>
+        <option value="" disabled selected>Seleccione su tipo de usuario</option>
+        <option *ngFor="let tipo of tipo_usuarios" [value]="tipo.id_tipo_usuario">{{ tipo.nombre }}</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Consigne su email" formControlName="email" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="contrasenia">Contraseña:</label>
+      <input type="password" class="form-control" id="contrasenia" placeholder="Consigne su contraseña" formControlName="contrasenia" required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="onSubmit()">Entrar</button>
+  </form>
+</div>

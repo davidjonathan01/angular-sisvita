@@ -1,0 +1,35 @@
+/* Barra de navegación */
+.navbar {
+    background-color: #b2ebf2 !important; /* Fondo celeste intermedio */
+  }
+  
+  .navbar-brand {
+    color: #004d40 !important; /* Texto celeste muy oscuro */
+    font-weight: bold;
+  }
+  
+  .navbar-toggler {
+    border-color: #00796b; /* Borde celeste oscuro */
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 77, 64, 1%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Icono de toggler en celeste muy oscuro */
+  }
+  
+  .navbar-collapse {
+    justify-content: flex-end; /* Alinea los elementos del navbar a la derecha */
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: #00796b !important; /* Texto celeste oscuro */
+    margin-right: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #004d40 !important; /* Texto celeste muy oscuro al pasar el ratón */
+  }
+  
+  .navbar-nav .nav-item .nav-link.active {
+    color: #004d40 !important; /* Texto celeste muy oscuro cuando activo */
+  }

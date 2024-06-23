@@ -20,6 +20,8 @@ export class RealizarTestComponent implements OnInit {
   selectedTestId: number | null = null;
   respuestasSeleccionadas: number[] = []; // Almacenar los puntajes seleccionados
   allQuestionsAnswered: boolean = false; // Nuevo estado para verificar si todas las preguntas han sido respondidas
+  nivelAnsiedad: any = null; // Nuevo estado para almacenar la escala determinada
+  puntaje: number | null = null;
 
 
   constructor(private testService: TestService) {}
@@ -93,6 +95,7 @@ export class RealizarTestComponent implements OnInit {
             title: 'Test enviado ...',
             text: 'Se realizó correctamente el test!',
           });
+          this.determinarEscala(result.data.id_evaluacion);
       },
       (err: any) => {
         console.error('Error al realizar la evaluación', err);
@@ -105,4 +108,31 @@ export class RealizarTestComponent implements OnInit {
     );
   }
 
+  determinarEscala(id_evaluacion: number) {
+    const data = {
+      id_evaluacion,
+      id_especialista: 1 // Aquí debes agregar el ID del especialista real
+    };
+
+    this.testService.determinarEscala(data).subscribe(
+      (result: any) => {
+        console.log('Escala determinada con éxito', result);
+        this.nivelAnsiedad = result.nivel_ansiedad;
+        this.puntaje = result.data.puntaje;
+        Swal.fire({
+          icon: 'success',
+          title: 'Nivel de Ansiedad Determinado',
+          text: `Nivel de Ansiedad: ${this.nivelAnsiedad}\n\nPuntaje: ${this.puntaje}`,
+        });
+      },
+      (err: any) => {
+        console.error('Error al determinar la escala', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error ...',
+          text: 'Error al determinar la escala!',
+        });
+      }
+    );
+  }
 }
