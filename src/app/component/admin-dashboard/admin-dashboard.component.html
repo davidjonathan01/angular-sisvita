@@ -1,6 +1,34 @@
 <div class="container">
-    <h1>Bienvenido Administrador</h1>
-    <p>¡Has iniciado sesión correctamente en el panel de administración!</p>
-    <p>Desde aquí puedes gestionar usuarios, contenido, configuraciones y más.</p>
-    <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+  <h1>Bienvenido Administrador</h1>
+  <p>¡Has iniciado sesión correctamente en el panel de administración!</p>
+  <p>Desde aquí puedes gestionar usuarios, contenido, configuraciones y más.</p>
+  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
 </div>
+<div class="dashboard-container">
+  <div class="sidebar">
+    <ul>
+      <li (click)="showForm('modifify')">Modificar</li>
+      <li (click)="showForm('Pacientes')">Pacientes</li>
+      <li (click)="showForm('tests_calificar')">Test a Calificar</li>
+      <li (click)="showForm('calendar')">Calendario</li>
+      <li (click)="showForm('recursos')">Recursos</li>
+      <li (click)="showForm('talleres')">Talleres</li>
+      <li (click)="showForm('services')">Otros Servicios</li>
+      <li (click)="showForm('inbox')">Bandeja de Entrada</li>
+    </ul>
+    <div class="back-button">
+      <img src="path/to/back-icon.png" alt="Back">
+    </div>
+  </div>
+  <div class="content">
+    <h2 *ngIf="activeForm === 'modifify'">Modificar Resultados</h2>
+    <h2 *ngIf="activeForm === 'Pacientes'">Ver Pacientes</h2>
+    <h2 *ngIf="activeForm === 'tests_calificar'">Test Pendientes</h2>
+    <h2 *ngIf="activeForm === 'calendar'">Calendario</h2>
+    <h2 *ngIf="activeForm === 'recursos'">Recursos Disponibles</h2>
+
+    
+    <!-- Puedes agregar más secciones según sea necesario -->
+  </div>
+</div>
+
