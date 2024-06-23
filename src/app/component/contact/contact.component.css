@@ -1,0 +1,121 @@
+/* Estilo global */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Estilo del encabezado */
+  .navbar {
+    background-color: #00796b; /* Celeste oscuro */
+    color: #fff;
+    padding: 10px 0;
+  }
+  
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .nav-links li a.active {
+    font-weight: bold;
+  }
+  
+  /* Estilo de la sección de contacto */
+  .contact-section {
+    background-color: #b2ebf2; /* Celeste intermedio */
+    padding: 50px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    color: #00796b; /* Celeste oscuro */
+    margin-bottom: 30px;
+  }
+  
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    color: #00796b; /* Celeste oscuro */
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .btn {
+    background-color: #00acc1; /* Celeste intermedio */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #00838f; /* Celeste más oscuro */
+  }
+  
+  /* Estilo del pie de página */
+  .footer {
+    background-color: #00796b; /* Celeste oscuro */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
