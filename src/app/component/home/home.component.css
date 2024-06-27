@@ -26,9 +26,10 @@ body {
 /* Título principal */
 h1.display-4 {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #00796b; /* Celeste oscuro */
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
 }
 
 /* Párrafos principales */

@@ -6,6 +6,7 @@ import { Pregunta } from '../../../model/pregunta';
 import { Opcion } from '../../../model/opcion';
 import Swal from 'sweetalert2';
 import { Evaluacion } from '../../../model/evaluacion';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-realizar-test',
   standalone: true,
@@ -26,7 +27,7 @@ export class RealizarTestComponent implements OnInit {
   puntaje: number | null = null;
 
 
-  constructor(private testService: TestService) {}
+  constructor(private testService: TestService, private authService: AuthService) {}
 
   ngOnInit() {
     this.loadTests();
@@ -82,9 +83,15 @@ export class RealizarTestComponent implements OnInit {
   }
 
   enviarTest() {
+    const idPaciente = this.authService.getPacienteId();
+    if (idPaciente === null) {
+      Swal.fire('Error', 'No se pudo obtener el ID del paciente. Por favor, inicie sesión nuevamente.', 'error');
+      return;
+    }
+
     const evaluacion = {
       id_test: this.selectedTestId,
-      id_paciente: 2,  // Aquí debes agregar el ID del paciente real
+      id_paciente: idPaciente,  // Aquí debes agregar el ID del paciente real
       respuestas: this.respuestasSeleccionadas
     };
 
