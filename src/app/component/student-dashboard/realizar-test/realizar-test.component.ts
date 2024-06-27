@@ -5,6 +5,7 @@ import { TestService } from '../../../services/test.service';
 import { Pregunta } from '../../../model/pregunta';
 import { Opcion } from '../../../model/opcion';
 import Swal from 'sweetalert2';
+import { Evaluacion } from '../../../model/evaluacion';
 @Component({
   selector: 'app-realizar-test',
   standalone: true,
@@ -16,6 +17,7 @@ export class RealizarTestComponent implements OnInit {
   tests: Test[] = [];
   preguntas: Pregunta[] = [];
   opciones: Opcion[]=[];
+  evaluacion_realizada: Evaluacion | null=null;
 
   selectedTestId: number | null = null;
   respuestasSeleccionadas: number[] = []; // Almacenar los puntajes seleccionados
@@ -82,20 +84,28 @@ export class RealizarTestComponent implements OnInit {
   enviarTest() {
     const evaluacion = {
       id_test: this.selectedTestId,
-      id_paciente: 1,  // Aquí debes agregar el ID del paciente real
+      id_paciente: 2,  // Aquí debes agregar el ID del paciente real
       respuestas: this.respuestasSeleccionadas
     };
 
     this.testService.realizarEvaluacion(evaluacion).subscribe(
       (result: any) => {
         console.log('Evaluación realizada con éxito', result);
-        Swal.close();
+        this.evaluacion_realizada=result.data;
+        //Swal.close();
+        Swal.fire({
+          icon: 'success',
+          title: 'Test enviado ...',
+          text: 'Se realizó correctamente el test!',
+          timer: 2000,  // Mostrar por al menos un segundo
+        }).then(() => {
           Swal.fire({
             icon: 'success',
-            title: 'Test enviado ...',
-            text: 'Se realizó correctamente el test!',
+            title: 'Puntaje Determinado',
+            text: `Puntaje obtenido: ${this.evaluacion_realizada?.puntaje}`,
+            timer: 4000,  // Mostrar por al menos dos segundos
           });
-          this.determinarEscala(result.data.id_evaluacion);
+        });
       },
       (err: any) => {
         console.error('Error al realizar la evaluación', err);
@@ -108,31 +118,4 @@ export class RealizarTestComponent implements OnInit {
     );
   }
 
-  determinarEscala(id_evaluacion: number) {
-    const data = {
-      id_evaluacion,
-      id_especialista: 1 // Aquí debes agregar el ID del especialista real
-    };
-
-    this.testService.determinarEscala(data).subscribe(
-      (result: any) => {
-        console.log('Escala determinada con éxito', result);
-        this.nivelAnsiedad = result.nivel_ansiedad;
-        this.puntaje = result.data.puntaje;
-        Swal.fire({
-          icon: 'success',
-          title: 'Nivel de Ansiedad Determinado',
-          text: `Nivel de Ansiedad: ${this.nivelAnsiedad}\n\nPuntaje: ${this.puntaje}`,
-        });
-      },
-      (err: any) => {
-        console.error('Error al determinar la escala', err);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error ...',
-          text: 'Error al determinar la escala!',
-        });
-      }
-    );
-  }
 }

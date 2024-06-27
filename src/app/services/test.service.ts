@@ -29,8 +29,5 @@ export class TestService {
     realizarEvaluacion(evaluacion: any): Observable<any> {
       return this.http.post<any>(`${this.BASE_URL}/cus_realizar_test/realizar_evaluacion`, evaluacion);
     }
-  
-    determinarEscala(data: any): Observable<any> {
-      return this.http.post<any>(`${this.BASE_URL}/cus_routes2/determinar_escala`, data);
-    }
+
 }

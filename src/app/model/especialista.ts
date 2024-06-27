@@ -1,3 +1,6 @@
+import { Especialidad } from "./especialidad";
+import { Genero } from "./genero";
+
 export interface Especialista {
     id_especialista: number;
     id_especialidad: number;
@@ -10,4 +13,6 @@ export interface Especialista {
     anio_graduacion: number;
     activo: boolean;
     id_usuario: number;
+    especialidad: Especialidad;
+    genero: Genero;
   }

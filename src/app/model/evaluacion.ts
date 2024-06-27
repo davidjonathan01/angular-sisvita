@@ -1,3 +1,4 @@
+import { Escala } from "./escala";
 import { Paciente } from "./paciente";
 import { Test } from "./test";
 export interface Evaluacion {
@@ -6,6 +7,9 @@ export interface Evaluacion {
     id_test: number;
     respuestas: string;
     fec_realizacion: Date;
+    puntaje: number;
+    id_escala: number;
     paciente: Paciente;
     test: Test;
+    escala: Escala
 }

@@ -1,12 +1,54 @@
-<div class="container">
-    <h1 class="section-title">Resultados de Tests</h1>
-    <div class="results-list">
-      <div class="result-item">
-        <h3>Test de:</h3>
-        <p><strong>Resultado:</strong> </p>
-        <p><strong>Fecha:</strong> </p>
-        <p><strong>Observaciones:</strong> </p>
+<div class="container-fluid">
+  <div *ngFor="let resultado of resultados" class="resultado-card">
+    <div class="row">
+      <div class="card col-md-8">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <h6>Especialista</h6>
+              <p><strong>Nombres:</strong> {{ resultado.especialista.nombres }}</p>
+              <p><strong>Apellidos:</strong> {{ resultado.especialista.apellidos }}</p>
+              <p><strong>Documento de Identidad:</strong> {{ resultado.especialista.doc_identidad }}</p>
+              <p><strong>Numero de Licencia:</strong> {{ resultado.especialista.n_licencia }}</p>
+              <p><strong>Especialidad:</strong> {{ resultado.especialista.especialidad.titulo }}</p>
+            </div>
+            <div class="col-md-4">
+              <h6>Evaluación</h6>
+              <p><strong>Test:</strong> {{ resultado.evaluacion.test.nombre }}</p>
+              <p><strong>N° preguntas:</strong> {{ resultado.evaluacion.test.n_preguntas }}</p>
+              <p><strong>Versión:</strong> {{ resultado.evaluacion.test.n_version }}</p>
+              <p><strong>Puntaje:</strong> {{ resultado.puntaje }}</p>
+              <p><strong>Fecha de realización:</strong> {{ resultado.evaluacion.fec_realizacion | date }}</p>
+              <p><strong>Nivel de ansiedad:</strong> {{ resultado.escala.nombre }}</p>
+            </div>
+            <div class="col-md-4">
+              <h6>Invitaciones</h6>
+              <button type="button" class="btn btn-secondary btn-sm" (click)="cargarInvitaciones(resultado.id_resultado)">Ver Invitaciones</button>
+              <div *ngIf="resultado.id_resultado === resultadoSeleccionado">
+                <div *ngIf="cargandoInvitaciones">Cargando invitaciones...</div>
+                <div *ngIf="!cargandoInvitaciones">
+                  <div *ngIf="invitaciones.length > 0; else noInvitaciones">
+                    <div *ngFor="let invitacion of invitaciones">
+                      <p><strong>Test:</strong> {{ invitacion.test.nombre }}</p>
+                      <p><strong>Fecha de invitación:</strong> {{ invitacion.fec_invitacion | date }}</p>
+                    </div>
+                  </div>
+                  <ng-template #noInvitaciones>
+                    <p>Sin Invitaciones</p>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h6>Interpretacion</h6>
+              <p><strong>Fecha:</strong> {{ resultado.fec_interpretacion }}</p>
+              <p><strong>Interpretacion del especialista:</strong> {{ resultado.interpretacion }}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- Aquí puedes agregar más resultados según sea necesario -->
     </div>
   </div>
+</div>
