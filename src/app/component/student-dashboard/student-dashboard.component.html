@@ -4,11 +4,12 @@
     <div class="sidebar">
       <ul>
         <li (click)="showForm('realizar-test')">Realizar Test</li>
-        
         <li (click)="showForm('results')">Resultados</li>
-        <li (click)="showForm('calendar')">Calendario</li>
-        <li (click)="showForm('services')">Otros Servicios</li>
+        <li (click)="showForm('solicitar-cita')">Solicitar Cita</li>
+        <li (click)="showForm('calendario-citas')">Calendario de citas</li>
         <li (click)="showForm('inbox')">Bandeja de Entrada</li>
+        <li (click)="showForm('foro')">Foro de discusión</li>
+        
       </ul>
       <div class="back-button">
         <img src="https://cdn-icons-png.flaticon.com/512/4495/4495698.png" alt="Back">
@@ -18,9 +19,21 @@
       <h2 *ngIf="activeForm === 'realizar-test'">Realizar Test de Ansiedad</h2>
       <app-realizar-test *ngIf="activeForm === 'realizar-test'"></app-realizar-test>
 
-    <h2 *ngIf="activeForm === 'results'">Ver Resultados</h2>
-    <app-results *ngIf="activeForm === 'results'"></app-results>
+      <h2 *ngIf="activeForm === 'results'">Ver Resultados</h2>
+      <app-results *ngIf="activeForm === 'results'"></app-results>
+
+      <h2 *ngIf="activeForm === 'solicitar-cita'">Solicitar Cita</h2>
+      <app-solicitar-cita *ngIf="activeForm === 'solicitar-cita'"></app-solicitar-cita>
+
+      <h2 *ngIf="activeForm === 'calendario-citas'">Calendario de Citas</h2>
+      <app-calendario-citas *ngIf="activeForm === 'calendario-citas'"></app-calendario-citas>
+
+      <h2 *ngIf="activeForm === 'inbox'">Bandeja de Entrada</h2>
+      <app-inbox *ngIf="activeForm === 'inbox'"></app-inbox>
+
+      <h2 *ngIf="activeForm === 'foro'">Foro de Discusión</h2>
+      <app-foro *ngIf="activeForm === 'foro'"></app-foro>
     
     <!-- Puedes agregar más secciones según sea necesario -->
-  </div>
+    </div>
   </div>

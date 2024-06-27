@@ -2,13 +2,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RealizarTestComponent } from './realizar-test/realizar-test.component';
 import { ResultsComponent } from './results/results.component';
+import { SolicitarCitaComponent } from "./solicitar-cita/solicitar-cita.component";
+import { CalendarioCitasComponent } from "./calendario-citas/calendario-citas.component";
+import { InboxComponent } from "./inbox/inbox.component";
+import { ForoComponent } from "./foro/foro.component";
 
 @Component({
-  selector: 'app-student-dashboard',
-  standalone: true,
-  imports: [CommonModule,RealizarTestComponent,ResultsComponent],
-  templateUrl: './student-dashboard.component.html',
-  styleUrl: './student-dashboard.component.css'
+    selector: 'app-student-dashboard',
+    standalone: true,
+    templateUrl: './student-dashboard.component.html',
+    styleUrl: './student-dashboard.component.css',
+    imports: [CommonModule, RealizarTestComponent, ResultsComponent, SolicitarCitaComponent, CalendarioCitasComponent, InboxComponent, ForoComponent]
 })
 export class StudentDashboardComponent {
   activeForm: string = '';
