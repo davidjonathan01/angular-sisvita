@@ -3,6 +3,7 @@
   
     <div class="sidebar">
       <ul>
+        <li (click)="showForm('perfil')">Datos Personales</li>
         <li (click)="showForm('realizar-test')">Realizar Test</li>
         <li (click)="showForm('results')">Resultados</li>
         <li (click)="showForm('solicitar-cita')">Solicitar Cita</li>
@@ -19,6 +20,9 @@
     </div>
 
     <div class="content">
+      <h2 *ngIf="activeForm === 'perfil'">Perfil de Paciente</h2>
+      <app-perfil *ngIf="activeForm === 'perfil'"></app-perfil>
+
       <h2 *ngIf="activeForm === 'realizar-test'">Realizar Test de Ansiedad</h2>
       <app-realizar-test *ngIf="activeForm === 'realizar-test'"></app-realizar-test>
 
@@ -43,5 +47,5 @@
       <h2 *ngIf="activeForm === 'recursos'">Recursos</h2>
       <app-recursos *ngIf="activeForm === 'recursos'"></app-recursos>
     </div>
- 
+
   </div>
