@@ -84,6 +84,7 @@ export class RealizarTestComponent implements OnInit {
 
   enviarTest() {
     const idPaciente = this.authService.getPacienteId();
+    const idEspecialista = 1; // ID del especialista directamente por ahor
     if (idPaciente === null) {
       Swal.fire('Error', 'No se pudo obtener el ID del paciente. Por favor, inicie sesión nuevamente.', 'error');
       return;
@@ -91,7 +92,8 @@ export class RealizarTestComponent implements OnInit {
 
     const evaluacion = {
       id_test: this.selectedTestId,
-      id_paciente: idPaciente,  // Aquí debes agregar el ID del paciente real
+      id_paciente: idPaciente, 
+      id_especialista: idEspecialista, // Añadimos el id_especialista aquí
       respuestas: this.respuestasSeleccionadas
     };
 

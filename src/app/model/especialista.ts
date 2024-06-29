@@ -1,18 +1,17 @@
 import { Especialidad } from "./especialidad";
 import { Genero } from "./genero";
+import { Persona } from "./persona";
+import { Usuario } from "./usuario";
 
 export interface Especialista {
     id_especialista: number;
     id_especialidad: number;
-    doc_identidad: string;
-    nombres: string;
-    apellidos: string;
-    fec_nacimiento: Date;
-    id_genero: number;
     n_licencia: string;
-    anio_graduacion: number;
     activo: boolean;
+    id_persona: number;
     id_usuario: number;
+
     especialidad: Especialidad;
-    genero: Genero;
+    usuario: Usuario;
+    persona:Persona;
   }

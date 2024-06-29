@@ -6,9 +6,10 @@
           <div class="row">
             <div class="col-md-4">
               <h6>Especialista</h6>
-              <p><strong>Nombres:</strong> {{ resultado.especialista.nombres }}</p>
-              <p><strong>Apellidos:</strong> {{ resultado.especialista.apellidos }}</p>
-              <p><strong>Documento de Identidad:</strong> {{ resultado.especialista.doc_identidad }}</p>
+              <p><strong>Nombres:</strong> {{ resultado.especialista.persona.nombres }}</p>
+              <p><strong>Apellidos:</strong> {{ resultado.especialista.persona.apellidos }}</p>
+              <p><strong>Documento de Identidad:</strong> {{ resultado.especialista.persona.doc_identidad }}</p>
+              <p><strong>Documento de Identidad:</strong> {{ resultado.especialista.persona.genero.nombre }}</p>
               <p><strong>Numero de Licencia:</strong> {{ resultado.especialista.n_licencia }}</p>
               <p><strong>Especialidad:</strong> {{ resultado.especialista.especialidad.titulo }}</p>
             </div>
@@ -42,9 +43,9 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <h6>Interpretacion</h6>
+              <h6>Observacion del Especialista</h6>
               <p><strong>Fecha:</strong> {{ resultado.fec_interpretacion }}</p>
-              <p><strong>Interpretacion del especialista:</strong> {{ resultado.interpretacion }}</p>
+              <p><strong>Interpretacion del especialista:</strong> {{ resultado.observacion }}</p>
             </div>
           </div>
         </div>

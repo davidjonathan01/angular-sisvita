@@ -9,7 +9,7 @@ export interface Resultado{
     puntaje: number;
     id_escala: number;
     id_estado: number;
-    interpretacion: string;
+    observacion: string;
     fec_interpretacion: Date;
     escala:Escala;
     estado:Estado;

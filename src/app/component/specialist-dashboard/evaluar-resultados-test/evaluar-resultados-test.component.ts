@@ -6,6 +6,7 @@ import { Resultado } from '../../../model/resultado';
 import { Test } from '../../../model/test';
 import Swal from 'sweetalert2';
 import { Invitacion } from '../../../model/invitacion';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-evaluar-resultados-test',
@@ -18,32 +19,44 @@ export class EvaluarResultadosTestComponent implements OnInit{
   tests: Test[]=[]
   resultados: Resultado[] = [];
   invitaciones: Invitacion[]=[];
-  id_especialista: number = 1; // Debe ser asignado dinámicamente según el especialista que haya iniciado sesión
+  id_especialista: number | null = null; // Inicialmente null, será asignado dinámicamente
   selectedTestId: number | null = null; // Variable para almacenar el ID del test seleccionado para invitar
 
-  constructor(private resultadoService: ResultadoService) {}
+  constructor(private resultadoService: ResultadoService,private authService: AuthService) {}
 
   ngOnInit() {
-    this.cargarResultados();
-    this.loadTests();
+    this.id_especialista = this.authService.getEspecialistaId();
+    if (this.id_especialista !== null) {
+      this.cargarResultados();
+      this.loadTests();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error ...',
+        text: 'No se pudo obtener el ID del especialista!',
+      });
+    }
 
   }
 
   cargarResultados() {
-    this.resultadoService.getResultadosEspecialista(this.id_especialista).subscribe(
-      (result: any) => {
-        this.resultados = result.data;
-      },
-      (err: any) => {
-        console.error('Error al cargar resultados', err);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error ...',
-          text: 'Error al cargar resultados!',
-        });
-      }
-    );
+    if (this.id_especialista !== null) {
+      this.resultadoService.getResultadosEspecialista(this.id_especialista).subscribe(
+        (result: any) => {
+          this.resultados = result.data;
+        },
+        (err: any) => {
+          console.error('Error al cargar resultados', err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error ...',
+            text: 'Error al cargar resultados!',
+          });
+        }
+      );
+    }
   }
+
   loadTests() {
     this.resultadoService.getTests().subscribe(
       (result: any) => {
@@ -54,9 +67,13 @@ export class EvaluarResultadosTestComponent implements OnInit{
       }
     );
   }
+  onObservacionChange(resultado: Resultado) {
+    // Esta función se llama cada vez que la observación cambia
+  }
+
   
   invitarTest(id_resultado: number, id_test: number | null) {
-    if (id_test !== null) {
+    if (id_test !== null  && this.id_especialista !== null) {
       this.resultadoService.invitarRealizarTest(id_resultado, id_test,this.id_especialista).subscribe(
         (response: any) => {
           Swal.fire({
@@ -85,7 +102,7 @@ export class EvaluarResultadosTestComponent implements OnInit{
 
 
   culminarResultado(resultado: Resultado) {
-    this.resultadoService.updateResultado(resultado.id_resultado, { interpretacion: resultado.interpretacion }).subscribe(
+    this.resultadoService.updateResultado(resultado.id_resultado, { observacion: resultado.observacion }).subscribe(
       (response: any) => {
         Swal.fire({
           icon: 'success',

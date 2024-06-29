@@ -17,10 +17,10 @@ export class ResultadoPacienteService {
     console.log(this.BASE_URL);
    }
 
-   getResultadosPaciente(id_paciente: number): Observable<any> {
-    return this.http.get<string[]>(`${this.BASE_URL}get_resultados/${id_paciente}`);
+  getResultadosPaciente(id_paciente: number): Observable<any> {
+    return this.http.get<string[]>(`${this.BASE_URL}get_resultados_paciente/${id_paciente}`);
   }
   getInvitaciones(id_resultado: number): Observable<any> {
-    return this.http.get<any>(`${this.BASE_URL}/get_invitaciones/${id_resultado}`);
+    return this.http.get<any>(`${this.BASE_URL}/get_invitaciones_paciente/${id_resultado}`);
   }
 }
