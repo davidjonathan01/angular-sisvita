@@ -105,16 +105,27 @@
 
 .modal-footer .left-buttons {
   flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .modal-footer .right-buttons {
-  flex-shrink: 0;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Efectos para el botón preseleccionado */
 .btn.preselected {
-  background-color: #3077c4; /* Color de fondo más oscuro */
-  border: 2px solid #1d70c9; /* Borde destacado */
+  background-color: #1d70c9; /* Color de fondo más oscuro */
+  border: 2px solid #ffffff; /* Borde destacado */
   box-shadow: 0 0 10px rgba(73, 155, 241, 0.5); /* Sombra para darle efecto de resaltado */
 }
 

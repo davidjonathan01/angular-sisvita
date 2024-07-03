@@ -45,6 +45,7 @@ export class RealizarVigilanciaComponent implements OnInit {
   sortAscendingTest: boolean = true; // Estado de la ordenación (ascendente por defecto) para test
   lastSorted: string = ''; // Rastrea la última columna ordenada
   sortAscendingEscala: boolean = true; // Estado de la ordenación (ascendente por defecto) para escala
+  mostrarModalNotificacion: boolean = false;
 
   //Variables para Filtros
   tipoTestSeleccionado: number | null = null; // Almacenar el tipo de test seleccionado
@@ -280,14 +281,69 @@ export class RealizarVigilanciaComponent implements OnInit {
     return this.modalData?.observacion && this.modalData?.informe && this.modalData?.recomendacion;
   }
 
+  // Método para mostrar la ventana modal de notificación
+  abrirModalNotificacion() {
+    this.mostrarModalNotificacion = true; // Mostrar la ventana modal de notificación
+  }
+
+  // Método para cerrar la ventana modal de notificación
+  cerrarModalNotificacion() {
+    this.mostrarModalNotificacion = false;
+  }
+  
   guardarNotificacion() {
-    // Aquí se debería implementar la lógica para guardar la notificación
-    Swal.fire({
-      icon: 'success',
-      title: 'Éxito',
-      text: 'Notificación guardada exitosamente!',
-    });
-    this.cerrarModal();
+    const resultado = this.modalData; // Obtener el resultado seleccionado
+    const mensaje = `
+      Nivel de Ansiedad: ${resultado.escala.nombre}
+      Observación: ${resultado.observacion}
+      Informe: ${resultado.informe}
+      Recomendaciones: ${resultado.recomendacion}
+      Fecha: ${resultado.estado.id_estado === 5 ? new Date(resultado.fec_interpretacion).toLocaleDateString() : new Date(resultado.evaluacion.fec_realizacion).toLocaleDateString()}
+      Score: ${resultado.evaluacion.puntaje}
+      Test: ${resultado.evaluacion.test.nombre}
+    `;
+    
+    console.log('Correo destinatario',resultado.evaluacion.paciente.usuario.email)
+    console.log('Mensaje',mensaje)
+    
+    if (this.notificacionSeleccionada.correo) {
+      this.realizarVigilanciaService.enviarCorreo(resultado.evaluacion.paciente.usuario.email, mensaje).subscribe(
+        response => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: 'Correo enviado exitosamente!',
+          });
+          this.cerrarModalNotificacion();
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al enviar el correo.',
+          });
+        }
+      );
+    }
+  
+    if (this.notificacionSeleccionada.whatsapp) {
+      // Lógica para enviar el mensaje de WhatsApp
+      this.enviarWhatsapp(resultado.evaluacion.paciente.persona.num_telefono, mensaje);
+    }
+  
+    this.cerrarModalNotificacion();
+  }
+
+
+  enviarWhatsapp(numero: string, mensaje: string) {
+    // Lógica para enviar el mensaje de WhatsApp
+    console.log('Enviar WhatsApp a:', numero);
+    console.log('Mensaje:', mensaje);
+    // Aquí puedes implementar la llamada al servicio que envía el mensaje de WhatsApp
+  }
+
+  isNotificacionFormValid(): boolean {
+    return this.notificacionSeleccionada.correo || this.notificacionSeleccionada.whatsapp;
   }
 
   getColorForScale(testId: number, scaleName: string): string {
