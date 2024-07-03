@@ -153,7 +153,10 @@
       </div>
       <div class="modal-footer">
         <div class="left-buttons">
-          <button *ngIf="modalType === 'revisar'" class="btn btn-primary btn-sm preselected" (click)="culminarResultado(modalData)" [disabled]="!isRevisarFormValid()">Guardar</button>
+          <button *ngIf="modalType === 'revisar'" type="button" class="btn btn-primary btn-sm preselected" (click)="culminarResultado(modalData)" [disabled]="!isRevisarFormValid()">Guardar</button>
+        </div>
+        <div class="center-buttons">
+          <button *ngIf="modalType === 'revisar'" type="button" class="btn btn-primary btn-sm" (click)="abrirModalNotificacion()" [disabled]="!isRevisarFormValid()">Notificar</button>
         </div>
         <div class="right-buttons">
           <button type="button" class="btn btn-danger btn-sm" (click)="cerrarModal()">Cerrar</button>
@@ -163,3 +166,28 @@
   </div>
 </div>
 
+<!-- Modal para la notificación -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': mostrarModalNotificacion}" style="display: block;" *ngIf="mostrarModalNotificacion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notificar</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModalNotificacion()"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <input type="checkbox" id="correo" name="correo" [(ngModel)]="notificacionSeleccionada.correo">
+          <label for="correo">Correo electrónico</label>
+        </div>
+        <div>
+          <input type="checkbox" id="whatsapp" name="whatsapp" [(ngModel)]="notificacionSeleccionada.whatsapp">
+          <label for="whatsapp">WhatsApp</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm preselected" (click)="guardarNotificacion()" [disabled]="!isNotificacionFormValid()">Guardar</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="cerrarModalNotificacion()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

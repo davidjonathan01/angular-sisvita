@@ -35,9 +35,16 @@ export class RealizarVigilanciaService {
   getEscalasByTest(id_test: number): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL}get_escalas_by_test/${id_test}`);
   }
-
   // Nuevo método para obtener los tipos de tests
   getTipoTests(): Observable<Tipo_Test[]> {
     return this.http.get<Tipo_Test[]>(`${this.BASE_URL}get_tipo_tests`);
+  }
+  enviarCorreo(correo: string, mensaje: string): Observable<any> {
+    const body = { correo, mensaje };
+    return this.http.post(`${this.BASE_URL}enviar_correo`, body);
+  }
+  enviarWhatsapp(numero: string, mensaje: string): Observable<any> {
+    const body = { numero, mensaje };
+    return this.http.post(`${this.BASE_URL}enviar_whatsapp`, body);
   }
 }
