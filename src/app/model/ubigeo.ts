@@ -4,6 +4,6 @@ export interface Ubigeo{
     departamento: string;
     provincia: string;
     distrito: string;
-    latitud: Float32Array;
-    longitudF: Float32Array;
+    latitud: string;
+    longitud: string;
 }

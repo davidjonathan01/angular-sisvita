@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import Swal from 'sweetalert2';
-import { Tipo_Usuario } from '../../model/tipo_usuario';
-import { ReactiveFormsModule ,FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { Tipo_Usuario } from '../../model/tipo-usuario';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',

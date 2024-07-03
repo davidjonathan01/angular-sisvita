@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { getConexionBackend } from '../constants';
-import { Tipo_Usuario } from '../model/tipo_usuario';
-import { Genero } from '../model/genero';
-import { Ubigeo } from '../model/ubigeo';
 import { Carrera } from '../model/carrera';
+import { Genero } from '../model/genero';
+import { Tipo_Usuario } from '../model/tipo-usuario';
+import { Ubigeo } from '../model/ubigeo';
 
 @Injectable({
   providedIn: 'root'

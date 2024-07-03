@@ -9,7 +9,7 @@ export interface Tratamiento {
     fec_inicio: Date;
     fec_fin: Date;
     id_estado: number;
-    observaciones: string;
+    observaciones: string | null;
 
     resultado: Resultado;
     estado: Estado;

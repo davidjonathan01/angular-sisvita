@@ -8,7 +8,7 @@ export interface Paciente{
     id_paciente: number;
     id_ubigeo: number;
     id_condicion: number;
-    id_carrera: number;
+    id_carrera: number | null;
     id_persona: number;
     id_usuario: number;
 

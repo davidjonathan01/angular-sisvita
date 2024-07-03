@@ -6,15 +6,15 @@ export interface Resultado{
     id_resultado: number;
     id_evaluacion: number;
     id_especialista: number;
-    puntaje: number;
-    id_escala: number;
     id_estado: number;
-    observacion: string;
-    fec_interpretacion: Date;
-    informe: string,
-    recomendacion: string,
-    escala:Escala;
-    estado:Estado;
+    id_escala: number | null;
+    fec_interpretacion: Date | null;
+    observacion: string | null;
+    informe: string | null;
+    recomendacion: string | null;
+    
     evaluacion: Evaluacion;
     especialista:Especialista;
+    escala:Escala;
+    estado:Estado;   
 }

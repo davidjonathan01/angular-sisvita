@@ -1,4 +1,4 @@
-import { Tipo_Usuario } from "./tipo_usuario";
+import { Tipo_Usuario } from "./tipo-usuario";
 
 export interface Usuario{
     id_usuario: number;

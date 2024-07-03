@@ -8,5 +8,6 @@ export interface Persona{
     fec_nacimiento: Date;
     id_genero: number;
     num_telefono: string;
+    
     genero: Genero;
 }

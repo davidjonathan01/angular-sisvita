@@ -8,6 +8,7 @@ export interface Invitacion{
     id_resultado: number;
     id_test: number;
     fec_invitacion: Date;
+    
     especialista:Especialista;
     resultado:Resultado;
     test: Test;

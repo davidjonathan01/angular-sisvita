@@ -6,7 +6,7 @@ export interface Recurso {
     titulo: string;
     contenido: string;
     fec_publicacion: Date;
-    fec_edicion: Date;
+    fec_edicion: Date | null;
 
     especialista: Especialista;
 }
