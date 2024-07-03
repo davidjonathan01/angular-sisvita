@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
-import { RealizarVigilanciaService } from '../../../services/realizar-vigilancia.service';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import Swal from 'sweetalert2';
+import { Escala } from '../../../model/escala';
+import { Invitacion } from '../../../model/invitacion';
 import { Resultado } from '../../../model/resultado';
 import { Test } from '../../../model/test';
-import Swal from 'sweetalert2';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { Invitacion } from '../../../model/invitacion';
+import { Tipo_Test } from '../../../model/tipo-test';
 import { AuthService } from '../../../services/auth.service';
-import { Escala } from '../../../model/escala';
-import { MatIconModule } from '@angular/material/icon';
-import { Tipo_Test } from '../../../model/tipo_test';
+import { RealizarVigilanciaService } from '../../../services/realizar-vigilancia.service';
 
 
 @Component({
@@ -145,12 +145,12 @@ export class RealizarVigilanciaComponent implements OnInit {
       const fechaFinSinHora = new Date(this.fechaFin);
       fechaFinSinHora.setHours(23, 59, 59, 999);
   
-      resultadosFiltrados = resultadosFiltrados.filter(resultado => {
+      /*resultadosFiltrados = resultadosFiltrados.filter(resultado => {
         const fecha = resultado.estado.id_estado === 5 ? new Date(resultado.fec_interpretacion) : new Date(resultado.evaluacion.fec_realizacion);
         const fechaSinHora = new Date(fecha);
         fechaSinHora.setHours(0, 0, 0, 0);
         return fechaSinHora >= fechaInicioSinHora && fechaSinHora <= fechaFinSinHora;
-      });
+      });*/
       console.log(fechaInicioSinHora);
       console.log(fechaFinSinHora)
       console.log(resultadosFiltrados);

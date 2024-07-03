@@ -1,5 +1,5 @@
-export interface Idioma{
-    id_idioma: number;
+export interface Dia {
+    id_dia: number;
     nombre: string;
     descripcion: string | null;
 }

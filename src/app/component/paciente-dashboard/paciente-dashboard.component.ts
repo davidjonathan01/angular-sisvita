@@ -11,13 +11,13 @@ import { RecursosComponent } from "./recursos/recursos.component";
 import { PerfilComponent } from "./perfil/perfil.component";
 
 @Component({
-    selector: 'app-student-dashboard',
+    selector: 'app-paciente-dashboard',
     standalone: true,
-    templateUrl: './student-dashboard.component.html',
-    styleUrl: './student-dashboard.component.css',
+    templateUrl: './paciente-dashboard.component.html',
+    styleUrl: './paciente-dashboard.component.css',
     imports: [CommonModule, RealizarTestComponent, ResultsComponent, SolicitarCitaComponent, CalendarioCitasComponent, InboxComponent, ForoComponent, TalleresComponent, RecursosComponent, PerfilComponent]
 })
-export class StudentDashboardComponent {
+export class PacienteDashboardComponent {
   activeForm: string = '';
 
   showForm(form: string) {

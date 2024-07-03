@@ -1,5 +1,5 @@
 export interface Carrera{
     id_carrera: number;
-    nombre: string;
-    descripcion: string;
+    nombre: String;
+    descripcion: String | null;
 }

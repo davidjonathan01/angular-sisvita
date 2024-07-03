@@ -1,9 +1,9 @@
 export interface Test {
     id_test: number;
-    id_tipo_test: number;
     nombre: string;
-    descripcion: string;
+    id_tipo_test: number;
     n_preguntas: number;
-    n_version: string;
     id_idioma: number;
+    n_version: string;
+    descripcion: string | null;
 }

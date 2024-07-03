@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Resultado } from '../model/resultado';
 import { getConexionBackend } from '../constants';
-import { Test } from '../model/test';
-import { Tipo_Test } from '../model/tipo_test';
 import { Invitacion } from '../model/invitacion';
+import { Resultado } from '../model/resultado';
+import { Test } from '../model/test';
+import { Tipo_Test } from '../model/tipo-test';
 
 @Injectable({
   providedIn: 'root'

@@ -1,80 +1,93 @@
-/* Estilo global */
+/* Estilos generales */
 body {
-  font-family: 'Roboto', sans-serif; /* Cambia la fuente a Roboto para un look más moderno */
-  background-color: #e0f7fa; /* Fondo celeste claro */
+  font-family: Arial, sans-serif;
+  background-color: #e0f7fa; /* Celeste pastel muy claro */
+  color: #333;
   margin: 0;
   padding: 0;
 }
 
-/* Contenedor principal centrado */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Estilo de la columna central */
-.col-md-8 {
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Centra el contenido */
-}
-
-/* Título principal */
-h1.display-4 {
-  font-size: 3rem;
-  font-weight: 800;
+h1, h2 {
   color: #00796b; /* Celeste oscuro */
-  margin-bottom: 30px;
-  transition: all 0.3s ease;
+  margin: 0;
 }
 
-/* Párrafos principales */
-.lead {
-  font-size: 1.25rem;
-  color: #004d40; /* Celeste muy oscuro */
+h1 {
+  font-size: 2.5em;
   margin-bottom: 20px;
 }
 
-/* Espaciado adicional para la sección de botones */
+h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #004d40; /* Celeste más oscuro */
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .mt-5 {
-  margin-top: 3rem !important;
+  margin-top: 3rem;
 }
 
-/* Botones */
-.btn-primary {
-  background-color: #00acc1; /* Celeste intermedio */
-  border: none;
-  border-radius: 50px;
-  padding: 12px 24px; /* Aumenta el padding para más espacio */
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
+.p-3 {
+  padding: 1rem;
 }
 
-.btn-primary:hover {
-  background-color: #00838f; /* Celeste más oscuro al pasar el ratón */
+.bg-info {
+  background-color: #b2ebf2; /* Celeste claro pastel */
+  padding: 20px;
+  border-radius: 5px;
 }
 
-.btn-outline-primary {
-  border: 2px solid #00acc1; /* Celeste intermedio */
-  color: #00acc1; /* Celeste intermedio */
-  border-radius: 50px;
-  padding: 12px 24px; /* Aumenta el padding para más espacio */
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.bg-info-subtle {
+  background-color: #e0f7fa; /* Celeste muy claro pastel */
+  padding: 20px;
+  border-radius: 5px;
 }
 
-.btn-outline-primary:hover {
-  background-color: #00acc1; /* Celeste intermedio */
-  color: #ffffff;
+.rounded {
+  border-radius: 10px;
 }
 
-/* Espaciado entre botones */
-.me-3 {
-  margin-right: 1.5rem !important; /* Aumenta el margen entre botones */
+.block {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #e0f7fa; /* Celeste muy claro pastel */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .row {
+      display: block;
+      margin: 0 -10px;
+  }
+
+  .col-md-6 {
+      width: 100%;
+      padding: 10px 0;
+  }
+
+  .col-md-12 {
+      width: 100%;
+      padding: 10px 0;
+  }
 }
