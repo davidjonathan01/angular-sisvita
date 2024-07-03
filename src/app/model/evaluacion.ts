@@ -1,6 +1,7 @@
 import { Escala } from "./escala";
 import { Paciente } from "./paciente";
 import { Test } from "./test";
+import { Idioma } from "./idioma";
 export interface Evaluacion {
     id_evaluacion: number;
     id_paciente: number;
@@ -11,5 +12,6 @@ export interface Evaluacion {
     id_escala: number;
     paciente: Paciente;
     test: Test;
-    escala: Escala
+    escala: Escala;
+    idioma: Idioma;
 }

@@ -1,54 +1,95 @@
 <div class="container-fluid">
-  <div *ngFor="let resultado of resultados" class="resultado-card">
-    <div class="row">
-      <div class="card col-md-8">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <h6>Especialista</h6>
-              <p><strong>Nombres:</strong> {{ resultado.especialista.persona.nombres }}</p>
-              <p><strong>Apellidos:</strong> {{ resultado.especialista.persona.apellidos }}</p>
-              <p><strong>Documento de Identidad:</strong> {{ resultado.especialista.persona.doc_identidad }}</p>
-              <p><strong>Documento de Identidad:</strong> {{ resultado.especialista.persona.genero.nombre }}</p>
-              <p><strong>Numero de Licencia:</strong> {{ resultado.especialista.n_licencia }}</p>
-              <p><strong>Especialidad:</strong> {{ resultado.especialista.especialidad.titulo }}</p>
-            </div>
-            <div class="col-md-4">
-              <h6>Evaluación</h6>
-              <p><strong>Test:</strong> {{ resultado.evaluacion.test.nombre }}</p>
-              <p><strong>N° preguntas:</strong> {{ resultado.evaluacion.test.n_preguntas }}</p>
-              <p><strong>Versión:</strong> {{ resultado.evaluacion.test.n_version }}</p>
-              <p><strong>Puntaje:</strong> {{ resultado.puntaje }}</p>
-              <p><strong>Fecha de realización:</strong> {{ resultado.evaluacion.fec_realizacion | date }}</p>
-              <p><strong>Nivel de ansiedad:</strong> {{ resultado.escala.nombre }}</p>
-            </div>
-            <div class="col-md-4">
-              <h6>Invitaciones</h6>
-              <button type="button" class="btn btn-secondary btn-sm" (click)="cargarInvitaciones(resultado.id_resultado)">Ver Invitaciones</button>
-              <div *ngIf="resultado.id_resultado === resultadoSeleccionado">
-                <div *ngIf="cargandoInvitaciones">Cargando invitaciones...</div>
-                <div *ngIf="!cargandoInvitaciones">
-                  <div *ngIf="invitaciones.length > 0; else noInvitaciones">
-                    <div *ngFor="let invitacion of invitaciones">
-                      <p><strong>Test:</strong> {{ invitacion.test.nombre }}</p>
-                      <p><strong>Fecha de invitación:</strong> {{ invitacion.fec_invitacion | date }}</p>
-                    </div>
-                  </div>
-                  <ng-template #noInvitaciones>
-                    <p>Sin Invitaciones</p>
-                  </ng-template>
-                </div>
+  <mat-grid-list cols="1" rowHeight="40:1" class="mat-grid-list-space">
+    <mat-grid-tile><div class="mat-grid-tile-content">Resultados del Paciente</div></mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="filter-container">
+    <label for="estadoFiltro">Seleccione el estado de revisión:</label>
+    <select id="estadoFiltro" class="form-select" [(ngModel)]="estadoSeleccionado" (change)="filtrarResultados()">
+      <option value="">Todos</option>
+      <option *ngFor="let estado of estados" [value]="estado.id_estado">{{ estado.nombre }}</option>
+    </select>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Test</th>
+        <th>Fecha Evalaucion</th>
+        <th>Evaluación</th>
+        <th>Especialista</th>
+        <th>Observación</th>
+        <th>Invitaciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let resultado of resultadosFiltrados">
+        <td>{{ resultado.evaluacion.test.nombre }}</td>
+        <td>{{ resultado.evaluacion.fec_realizacion| date }}</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm" (click)="mostrarDetalles(resultado, 'evaluacion')">Ver Evaluación</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" (click)="mostrarDetalles(resultado, 'especialista')">Ver Especialista</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-warning btn-sm" (click)="mostrarDetalles(resultado, 'observacion')">Ver Observación</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="mostrarDetalles(resultado, 'invitaciones')">Ver Invitaciones</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para mostrar detalles -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': mostrarModal}" style="display: block;" *ngIf="mostrarModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ modalTitle }}</h5>
+        <button type="button" class="btn-close" (click)="cerrarModal()">dasd</button>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="modalType === 'especialista'">
+          <p><strong>Nombres:</strong> {{ modalData.especialista.persona.nombres }}</p>
+          <p><strong>Apellidos:</strong> {{ modalData.especialista.persona.apellidos }}</p>
+          <p><strong>Documento de Identidad:</strong> {{ modalData.especialista.persona.doc_identidad }}</p>
+          <p><strong>Género:</strong> {{ modalData.especialista.persona.genero.nombre }}</p>
+          <p><strong>Número de Licencia:</strong> {{ modalData.especialista.n_licencia }}</p>
+          <p><strong>Especialidad:</strong> {{ modalData.especialista.especialidad.titulo }}</p>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'evaluacion'">
+          <p><strong>Test:</strong> {{ modalData.evaluacion.test.nombre }}</p>
+          <p><strong>N° preguntas:</strong> {{ modalData.evaluacion.test.n_preguntas }}</p>
+          <p><strong>Versión:</strong> {{ modalData.evaluacion.test.n_version }}</p>
+          <p><strong>Puntaje:</strong> {{ modalData.evaluacion.puntaje }}</p>
+          <p><strong>Fecha de realización:</strong> {{ modalData.evaluacion.fec_realizacion | date }}</p>
+          <p><strong>Nivel de ansiedad:</strong> {{ modalData.escala.nombre }}</p>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'observacion'">
+          <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion }}</p>
+          <p><strong>Interpretación del especialista:</strong> {{ modalData.observacion }}</p>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'invitaciones'">
+          <div *ngIf="cargandoInvitaciones">Cargando invitaciones...</div>
+          <div *ngIf="!cargandoInvitaciones">
+            <div *ngIf="invitaciones.length > 0; else noInvitaciones">
+              <div *ngFor="let invitacion of invitaciones">
+                <p><strong>Test:</strong> {{ invitacion.test.nombre }}</p>
+                <p><strong>Fecha de invitación:</strong> {{ invitacion.fec_invitacion | date }}</p>
               </div>
             </div>
+            <ng-template #noInvitaciones>
+              <p>Sin Invitaciones</p>
+            </ng-template>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h6>Observacion del Especialista</h6>
-              <p><strong>Fecha:</strong> {{ resultado.fec_interpretacion }}</p>
-              <p><strong>Interpretacion del especialista:</strong> {{ resultado.observacion }}</p>
-            </div>
-          </div>
-        </div>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" (click)="cerrarModal()">Cerrar</button>
       </div>
     </div>
   </div>

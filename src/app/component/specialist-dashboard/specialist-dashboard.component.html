@@ -3,7 +3,7 @@
   <div class="sidebar">
     <ul>
       <li (click)="showForm('perfil')">Datos Personales</li>
-      <li (click)="showForm('evaluate')">Evaluar Resultados de Test</li>
+      <li (click)="showForm('surveillance')">Realizar Vigilancia</li>
       <li (click)="showForm('calendar')">Calendario de Citas</li>
 
 
@@ -27,7 +27,7 @@
       <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
     </div>
     <!--<h2 *ngIf="activeForm === 'evaluate'">Resultados Recibidos</h2>-->
-    <app-evaluar-resultados-test *ngIf="activeForm === 'evaluate'"></app-evaluar-resultados-test>
+    <app-realizar-vigilancia *ngIf="activeForm === 'surveillance'"></app-realizar-vigilancia>
 
     <h2 *ngIf="activeForm === 'Pacientes'">Ver Pacientes</h2>
     <h2 *ngIf="activeForm === 'tests_calificar'">Test Pendientes</h2>

@@ -1,0 +1,126 @@
+.container-fluid {
+    padding: 20px;
+  }
+  
+  mat-grid-tile {
+    background: rgb(30, 139, 175);
+  }
+  
+  .mat-grid-tile-content {
+    font-size: 17px; /* Tamaño de la letra */
+    color: white; /* Color del texto */
+    text-align: center; /* Centra el texto horizontalmente */
+    display: flex; /* Utiliza flexbox para centrar verticalmente */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+  }
+  .mat-grid-list-space {
+    margin-bottom: 20px; /* Espacio inferior entre el grid y otros elementos */
+  }
+
+  .modal {
+    display: block; /* Asegura que el modal se muestra */
+    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  }
+  
+  .modal-dialog {
+    max-width: 800px; /* Ajusta el ancho del modal */
+    margin: 1.75rem auto; /* Centra el modal verticalmente */
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    margin: 0;
+  }
+  
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+  }
+
+
+  .text-center {
+    text-align: center;
+  }
+  
+  .resultado-card {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #DDF2FB;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    margin-bottom: 20px;
+  }
+  
+  h6 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold; /* Hace que el texto sea negrita */
+    color: #1E83AE; /* Color del texto */
+    border-bottom: 2px solid #ddd; /* Añade una línea debajo del encabezado */
+    padding-bottom: 5px; /* Añade espacio entre el texto y la línea */
+    margin-top: 20px; /* Añade espacio encima del encabezado */
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .interpretacion {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .btn-small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 500px;
+  }
+  /* Estilos para el pie del modal */
+.modal-footer {
+  display: flex;
+  justify-content: space-between; /* Espacio entre botones */
+}
+
+.modal-footer .left-buttons {
+  flex-grow: 1;
+}
+
+.modal-footer .right-buttons {
+  flex-shrink: 0;
+}
+
+/* Efectos para el botón preseleccionado */
+.btn.preselected {
+  background-color: #3077c4; /* Color de fondo más oscuro */
+  border: 2px solid #1d70c9; /* Borde destacado */
+  box-shadow: 0 0 10px rgba(73, 155, 241, 0.5); /* Sombra para darle efecto de resaltado */
+}
+
+.status-box {
+  width: 40px;
+  height: 21px;
+  border-radius: 4px;
+}
+

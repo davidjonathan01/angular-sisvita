@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Resultado } from '../model/resultado';
 import { getConexionBackend } from '../constants';
+import { Estado } from '../model/estado';
 
 
 @Injectable({
@@ -22,5 +23,8 @@ export class ResultadoPacienteService {
   }
   getInvitaciones(id_resultado: number): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL}/get_invitaciones_paciente/${id_resultado}`);
+  }
+  getEstadosResultado(): Observable<Estado[]> {
+    return this.http.get<Estado[]>(`${this.BASE_URL}get_estados_resultado`);
   }
 }

@@ -2,7 +2,7 @@
   <form [formGroup]="loginForm">
     <h1>Iniciar Sesión</h1>
     <div class="form-group mb-3">
-      <label for="id_tipo_usuario">Tipo de Usuario:</label>
+      <label for="id_tipo_usuario">Invitar a test:</label>
       <select class="form-control" id="id_tipo_usuario" formControlName="id_tipo_usuario" required>
         <option value="" disabled selected>Seleccione su tipo de usuario</option>
         <option *ngFor="let tipo of tipo_usuarios" [value]="tipo.id_tipo_usuario">{{ tipo.nombre }}</option>

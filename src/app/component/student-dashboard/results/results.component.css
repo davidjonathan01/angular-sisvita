@@ -2,56 +2,92 @@
   padding: 20px;
 }
 
-.text-center {
-  text-align: center;
+mat-grid-tile {
+  background: rgb(30, 139, 175);
 }
 
-.resultado-card {
+.mat-grid-tile-content {
+  font-size: 17px; /* Tamaño de la letra */
+  color: white; /* Color del texto */
+  text-align: center; /* Centra el texto horizontalmente */
+  display: flex; /* Utiliza flexbox para centrar verticalmente */
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+}
+.mat-grid-list-space {
+  margin-bottom: 20px; /* Espacio inferior entre el grid y otros elementos */
+}
+
+.filter-container {
   margin-bottom: 20px;
 }
 
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #DDF2FB;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.card-title {
+.table {
+  width: 100%;
   margin-bottom: 20px;
+  border-collapse: collapse;
 }
 
-h6 {
-  font-size: 16px;
-  margin-bottom: 10px;
-  font-weight: bold; /* Hace que el texto sea negrita */
-  color: #1E83AE; /* Color del texto */
-  border-bottom: 2px solid #ddd; /* Añade una línea debajo del encabezado */
-  padding-bottom: 5px; /* Añade espacio entre el texto y la línea */
-  margin-top: 20px; /* Añade espacio encima del encabezado */
+.table th, .table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-p {
+.table th {
+  background-color: #f2f2f2;
+}
+
+.btn {
   margin: 5px 0;
 }
 
-.interpretacion {
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+.modal.show {
+  display: block;
 }
 
-.mt-3 {
-  margin-top: 1rem;
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.btn-small {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  width: 100px;
-  
+.modal-dialog {
+  max-width: 800px;
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.modal-header {
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-body p {
+  margin: 5px 0;
+}
+
+.modal-footer {
+  border-top: 1px solid #ddd;
+  text-align: right;
+}
+
+h5.modal-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+button.btn-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+  opacity: 0.5;
+}
+
+button.btn-close:hover {
+  color: #000;
+  opacity: 0.75;
 }

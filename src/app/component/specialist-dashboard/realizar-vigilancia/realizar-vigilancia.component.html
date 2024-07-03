@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <mat-grid-list cols="1" rowHeight="40:1" class="mat-grid-list-space">
+    <mat-grid-tile>
+      <div class="mat-grid-tile-content">Realizar Vigilancia</div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Estado</th>
+        <th>Test
+          <mat-icon button (click)="sortByTest()">swap_vert</mat-icon>
+        </th>
+        <th>Ansiedad
+          <mat-icon button (click)="sortByEscala()">swap_vert</mat-icon>
+        </th>
+        <th>Score</th>
+        <th>Paciente
+          <mat-icon button (click)="sortByPaciente()">swap_vert</mat-icon>
+        </th>
+        <th>Evaluación</th>
+        <th>Invitar test</th>
+        <th>Revisar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of resultados">
+        <td>
+          <div [style.backgroundColor]="getColorForScale(resultado.evaluacion.test.id_test, resultado.escala.nombre)" class="status-box"></div>
+        </td>
+        <td>{{ resultado.evaluacion.test.nombre }}</td>
+        <td>{{ resultado.escala.nombre }}</td>
+        <td>{{ resultado.evaluacion.puntaje }}</td>
+        <td>
+          <button class="btn btn-link" (click)="mostrarDetalles(resultado, 'paciente')">
+            {{ resultado.evaluacion.paciente.persona.nombres }} {{ resultado.evaluacion.paciente.persona.apellidos }}
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm" (click)="mostrarDetalles(resultado, 'evaluacion')">Ver Evaluación</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="mostrarDetalles(resultado, 'invitaciones')">Ver Invitaciones</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" (click)="mostrarDetalles(resultado, 'revisar')">Revisar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para mostrar detalles -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': mostrarModal}" style="display: block;" *ngIf="mostrarModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <mat-grid-list cols="1" rowHeight="20:1" class="mat-grid-list-space">
+          <mat-grid-tile>
+            <div class="mat-grid-tile-content">{{ modalTitle }}</div>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <ng-container *ngIf="modalType === 'paciente'">
+          <p><strong>Nombres:</strong> {{ modalData.evaluacion.paciente.persona.nombres }}</p>
+          <p><strong>Apellidos:</strong> {{ modalData.evaluacion.paciente.persona.apellidos }}</p>
+          <p><strong>Documento de Identidad:</strong> {{ modalData.evaluacion.paciente.persona.doc_identidad }}</p>
+          <p><strong>Número de teléfono:</strong> {{ modalData.evaluacion.paciente.persona.num_telefono }}</p>
+          <p><strong>Correo electrónico:</strong> {{ modalData.evaluacion.paciente.usuario.email }}</p>
+          <p><strong>Género:</strong> {{ modalData.evaluacion.paciente.persona.genero.nombre }}</p>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'evaluacion'">
+          <p><strong>Test:</strong> {{ modalData.evaluacion.test.nombre }}</p>
+          <p><strong>N° preguntas:</strong> {{ modalData.evaluacion.test.n_preguntas }}</p>
+          <p><strong>Versión:</strong> {{ modalData.evaluacion.test.n_version }}</p>
+          <p><strong>Idioma:</strong> {{ modalData.evaluacion.test.idioma.nombre }}</p>
+          <p><strong>Puntaje:</strong> {{ modalData.evaluacion.puntaje }}</p>
+          <p><strong>Fecha de realización:</strong> {{ modalData.evaluacion.fec_realizacion | date }}</p>
+          <p><strong>Nivel de ansiedad original:</strong> {{ modalData.evaluacion.escala.nombre }}</p>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'invitaciones'">
+          <label>Invitar a test:</label>
+          <select class="form-select form-select-sm" [(ngModel)]="inviteTestId" required>
+            <option value="" disabled selected>Seleccione el tipo de test</option>
+            <option *ngFor="let test of tests" [value]="test.id_test">{{ test.nombre }}</option>
+          </select>
+          <button class="btn btn-primary btn-sm" (click)="invitarTest(modalData, inviteTestId)" [disabled]="!inviteTestId">Invitar</button>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'revisar'">
+          <h6>Nivel de Ansiedad</h6>
+          <select class="form-select form-select-sm" [(ngModel)]="modalData.escala.id_escala">
+            <option *ngFor="let escala of escalas[modalData.evaluacion.test.id_test]" [value]="escala.id_escala">{{ escala.nombre }}</option>
+          </select>
+          <h6>Observación</h6>
+          <textarea class="form-control" [(ngModel)]="modalData.observacion" rows="3" placeholder="Ingrese su observación"></textarea>
+          <h6>Informe</h6>
+          <textarea class="form-control" [(ngModel)]="modalData.informe" rows="3" placeholder="Ingrese su informe"></textarea>
+          <h6>Recomendaciones</h6>
+          <textarea class="form-control" [(ngModel)]="modalData.recomendacion" rows="3" placeholder="Ingrese su recomendación"></textarea>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'notificar'">
+          <div>
+            <input type="checkbox" id="correo" name="correo" [(ngModel)]="notificacionSeleccionada.correo">
+            <label for="correo">Correo electrónico</label>
+          </div>
+          <div>
+            <input type="checkbox" id="whatsapp" name="whatsapp" [(ngModel)]="notificacionSeleccionada.whatsapp">
+            <label for="whatsapp">WhatsApp</label>
+          </div>
+          <button class="btn btn-primary mt-2" (click)="guardarNotificacion()">Guardar</button>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <div class="left-buttons">
+          <button *ngIf="modalType === 'revisar'" class="btn btn-primary btn-sm preselected" (click)="culminarResultado(modalData)" [disabled]="!isRevisarFormValid()">Guardar</button>
+        </div>
+        <div class="right-buttons">
+          <button type="button" class="btn btn-danger btn-sm" (click)="cerrarModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -11,6 +11,8 @@ export interface Resultado{
     id_estado: number;
     observacion: string;
     fec_interpretacion: Date;
+    informe: string,
+    recomendacion: string,
     escala:Escala;
     estado:Estado;
     evaluacion: Evaluacion;
