@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
+import { AboutComponent } from './component/about/about.component';
+import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { ContactComponent } from './component/contact/contact.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
-import { StudentDashboardComponent } from './component/student-dashboard/student-dashboard.component';
+import { RegistrarEstudianteComponent } from './component/registrar-paciente/registrar-paciente.component';
 import { SpecialistDashboardComponent } from './component/specialist-dashboard/specialist-dashboard.component';
-import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
-import { RegistrarEstudianteComponent } from './component/registrar-estudiante/registrar-estudiante.component';
-import { AboutComponent } from './component/about/about.component';
-import { ContactComponent } from './component/contact/contact.component';
+import { RegistrarPacienteComponent } from './component/registrar-paciente/registrar-paciente.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'student-dashboard', component: StudentDashboardComponent },
   { path: 'specialist-dashboard', component: SpecialistDashboardComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent},
-  { path: 'registrar-estudiante', component: RegistrarEstudianteComponent}
+  { path: 'registrar-paciente', component: RegistrarPacienteComponent}
 
 ];
 
