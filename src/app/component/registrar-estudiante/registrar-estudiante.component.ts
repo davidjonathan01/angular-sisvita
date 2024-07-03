@@ -35,8 +35,7 @@ export class RegistrarEstudianteComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       direccion: new FormControl('', [Validators.required, Validators.minLength(5)]),
       num_telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15)]),
-      anio_ingreso: new FormControl('', [Validators.required, Validators.min(1900), Validators.max(new Date().getFullYear())]),
-      id_carrera: new FormControl('', [Validators.required]),
+      carrera: new FormControl('', [Validators.required]),
       contrasenia: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
