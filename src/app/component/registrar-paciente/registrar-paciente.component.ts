@@ -1,21 +1,22 @@
-import { CommonModule, formatDate } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Inject, LOCALE_ID } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import Swal from 'sweetalert2';
 import { Carrera } from '../../model/carrera';
 import { Genero } from '../../model/genero';
+import { Paciente } from '../../model/paciente';
+import { Ubigeo } from '../../model/ubigeo';
 import { AuthService } from '../../services/auth.service';
 import { PacienteService } from '../../services/paciente.service';
-import { Ubigeo } from '../../model/ubigeo';
-import { Paciente } from '../../model/paciente';
+
 
 
 @Component({
   selector: 'app-registrar-paciente',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgxPaginationModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxPaginationModule, FormsModule],
   templateUrl: './registrar-paciente.component.html',
   styleUrl: './registrar-paciente.component.css'
 })
@@ -24,11 +25,36 @@ export class RegistrarPacienteComponent {
   generos: Genero[] = [];
   carreras: Carrera[] = [];
   ubigeos: Ubigeo[] = [];
+  departamentos_filtrados: string[] = [];
+  provincias_filtradas: Ubigeo[] = [];
+  distritos_filtrados: Ubigeo[] = [];
+  departamento_seleccionado: string = '';
+  provincia_seleccionada: string = '';
 
   pacienteForm: FormGroup;
   offset: number;
   isEdited: boolean = false;
   page: number;
+
+  onDepartamentoSeleccionado(event: Event) {
+    // Lógica adicional que quieras ejecutar cuando se selecciona un departamento
+    const target = event.target as HTMLSelectElement;
+    const value = target.value;
+    this.departamento_seleccionado = value;
+    console.log('Departamento seleccionado:', this.departamento_seleccionado);
+    this.loadProvincias();
+    // Por ejemplo, cargar provincias basadas en el departamento seleccionado
+  }
+
+  onProvinciaSeleccionada(event: Event) {
+    // Lógica adicional que quieras ejecutar cuando se selecciona una provincia
+    const target = event.target as HTMLSelectElement;
+    const value = target.value;
+    this.provincia_seleccionada = value;
+    console.log('Provincia seleccionada:', this.provincia_seleccionada);
+    this.loadDistritos();
+    // Por ejemplo, cargar distritos basados en el departamento y provincia seleccionados
+  }
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
@@ -48,11 +74,20 @@ export class RegistrarPacienteComponent {
       num_telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15)]),
       id_carrera: new FormControl('', [Validators.required]),
       contrasenia: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      id_ubigeo_departamento: new FormControl('', [Validators.required]),
+      id_ubigeo_provincia: new FormControl('', [Validators.required]),
+      id_ubigeo_distrito: new FormControl('', [Validators.required])
     });
   }
 
   ngOnInit(): void {
     this.getPacientes();
+    this.loadCarreras();
+    this.loadGeneros();
+    this.loadUbigeos();
+    this.loadDepartamentos();
+    this.loadProvincias();
+    this.loadDistritos();
   }
 
   getPacientes(): void {
@@ -206,15 +241,52 @@ export class RegistrarPacienteComponent {
   }
 
   loadUbigeos() {
-    this.authService.getUbigeos().subscribe(
-      (result: any) => {
-        this.ubigeos = result.data;
-      },
-      (err: any) => {
-        console.error('Error al cargar ubigeos', err);
-      }
+      this.authService.getUbigeos().subscribe(
+          (result: any) => {
+              this.ubigeos = result.data;
+          },
+          (err: any) => {
+              console.error('Error al cargar ubigeos', err);
+          }
+      );
+  }
+  
+  loadDepartamentos() {
+      this.authService.getDepartamentosUnicos().subscribe(
+          (result: any) => {
+              this.departamentos_filtrados = result.data;
+          },
+          (err: any) => {
+              console.error('Error al cargar departamentos', err);
+          }
+      );
+  }
+  
+  loadProvincias() {
+      // Asegúrate de tener una variable para el departamento seleccionado, por ejemplo:
+      // departamentoSeleccionado: string = 'Lima';
+      this.authService.getProvinciasUnicas(this.departamento_seleccionado).subscribe(
+          (result: any) => {
+              this.provincias_filtradas = result.data;
+          },
+          (err: any) => {
+              console.error('Error al cargar provincias', err);
+          }
+      );
+  }
+
+  loadDistritos() {
+    this.authService.getDistritosUnicos(this.departamento_seleccionado, this.provincia_seleccionada).subscribe(
+        (result: any) => {
+            this.distritos_filtrados = result.data;
+        },
+        (err: any) => {
+            console.error('Error al cargar distritos', err);
+        }
     );
   }
+
+
 
   loadCarreras() {
     this.authService.getCarreras().subscribe(

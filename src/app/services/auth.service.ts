@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { getConexionBackend } from '../constants';
 import { Carrera } from '../model/carrera';
 import { Genero } from '../model/genero';
@@ -51,6 +51,34 @@ export class AuthService {
       })
     );
   }
+  
+  getDepartamentosUnicos(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.BASE_URL}/identificar_ubigeo_routes/departamentos_unicos`).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener departamentos únicos: ' + error.message;
+      })
+    );
+  }
+  
+  getProvinciasUnicas(departamento: string): Observable<string[]> {
+    return this.http.post<string[]>(`${this.BASE_URL}/identificar_ubigeo_routes/provincias_unicas`, { departamento }).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener provincias únicas: ' + error.message;
+      })
+    );
+  }
+
+  getDistritosUnicos(departamento: string, provincia: string): Observable<string[]> {
+    return this.http.post<string[]>(`${this.BASE_URL}/identificar_ubigeo_routes/distritos_unicos`, { departamento, provincia }).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener distritos únicos: ' + error.message;
+      })
+    );
+  }
+
 
   getCarreras(): Observable<Carrera[]> {
     return this.http.get<Carrera[]>(`${this.BASE_URL}/carrera_routes/get_carreras`).pipe(
