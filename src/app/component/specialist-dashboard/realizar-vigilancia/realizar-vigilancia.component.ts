@@ -144,12 +144,12 @@ export class RealizarVigilanciaComponent implements OnInit {
       const fechaFinSinHora = new Date(this.fechaFin);
       fechaFinSinHora.setHours(23, 59, 59, 999);
   
-      resultadosFiltrados = resultadosFiltrados.filter(resultado => {
+      /*resultadosFiltrados = resultadosFiltrados.filter(resultado => {
         const fecha = resultado.estado.id_estado === 5 ? new Date(resultado.fec_interpretacion) : new Date(resultado.evaluacion.fec_realizacion);
         const fechaSinHora = new Date(fecha);
         fechaSinHora.setHours(0, 0, 0, 0);
         return fechaSinHora >= fechaInicioSinHora && fechaSinHora <= fechaFinSinHora;
-      });
+      });*/
       console.log(fechaInicioSinHora);
       console.log(fechaFinSinHora)
       console.log(resultadosFiltrados);

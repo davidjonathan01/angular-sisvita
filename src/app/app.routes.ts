@@ -4,9 +4,10 @@ import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashb
 import { ContactComponent } from './component/contact/contact.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
-import { RegistrarEstudianteComponent } from './component/registrar-paciente/registrar-paciente.component';
-import { SpecialistDashboardComponent } from './component/specialist-dashboard/specialist-dashboard.component';
+
+import { PacienteDashboardComponent } from './component/paciente-dashboard/paciente-dashboard.component';
 import { RegistrarPacienteComponent } from './component/registrar-paciente/registrar-paciente.component';
+import { SpecialistDashboardComponent } from './component/specialist-dashboard/specialist-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
-  { path: 'student-dashboard', component: StudentDashboardComponent },
+  { path: 'paciente-dashboard', component: PacienteDashboardComponent },
   { path: 'specialist-dashboard', component: SpecialistDashboardComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent},
   { path: 'registrar-paciente', component: RegistrarPacienteComponent}

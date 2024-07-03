@@ -113,7 +113,7 @@ export class RegistrarPacienteComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.pacienteForm.setValue({
-          id_paciente: paciente.id_paciente,
+          /*id_paciente: paciente.id_paciente,
           doc_identidad: paciente.doc_identidad,
           nombres: paciente.nombres,
           apellidos: paciente.apellidos,
@@ -124,7 +124,7 @@ export class RegistrarPacienteComponent {
           num_telefono: paciente.num_telefono,
           anio_ingreso: paciente.anio_ingreso,
           id_carrera: paciente.id_carrera,
-          contrasenia: paciente.contrasenia
+          contrasenia: paciente.contrasenia*/
         });
         this.isEdited = true;
       }
