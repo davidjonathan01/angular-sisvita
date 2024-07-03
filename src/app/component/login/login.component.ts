@@ -80,7 +80,7 @@ onSubmit(): void {
   redirectUser(id_tipo_usuario: number) {
     console.log("Id: ",id_tipo_usuario)
     if (id_tipo_usuario === 1) {
-      this.router.navigate(['/student-dashboard']);
+      this.router.navigate(['/paciente-dashboard']);
     } else if (id_tipo_usuario === 2) {
       this.router.navigate(['/specialist-dashboard']);
     } else if (id_tipo_usuario === 3) {

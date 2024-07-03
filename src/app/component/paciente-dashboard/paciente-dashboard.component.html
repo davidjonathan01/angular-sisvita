@@ -1,17 +1,17 @@
 <h1>Bienvenido Estudiante</h1>
 <div class="dashboard-container">
-  
     <div class="sidebar">
       <ul>
         <li (click)="showForm('perfil')">Datos Personales</li>
         <li (click)="showForm('realizar-test')">Realizar Test</li>
-        <li (click)="showForm('results')">Resultados</li>
-        <li (click)="showForm('solicitar-cita')">Solicitar Cita</li>
+        <li (click)="showForm('results')">Resultados de tests</li>
+        <li (click)="showForm('solicitar-cita')">Reservar Cita</li>
         <li (click)="showForm('calendario-citas')">Calendario de citas</li>
-        <li (click)="showForm('inbox')">Bandeja de Entrada</li>
+        <li (click)="showForm('inscripcion-talleres')">Inscripción a talleres</li>
+        <li (click)="showForm('talleres')">Talleres matriculados</li>
+        <li (click)="showForm('recursos')">Recursos de autoayuda</li>
         <li (click)="showForm('foro')">Foro de discusión</li>
-        <li (click)="showForm('talleres')">Talleres</li>
-        <li (click)="showForm('recursos')">Recursos</li>
+        <li (click)="showForm('inbox')">Bandeja de Entrada</li>
       </ul>
 
       <div class="back-button">
@@ -20,31 +20,35 @@
     </div>
 
     <div class="content">
-      <h2 *ngIf="activeForm === 'perfil'">Perfil de Paciente</h2>
+      <h2 *ngIf="activeForm === 'perfil'">Perfil de Usuario</h2>
       <app-perfil *ngIf="activeForm === 'perfil'"></app-perfil>
 
-      <h2 *ngIf="activeForm === 'realizar-test'">Realizar Test de Ansiedad</h2>
+      <h2 *ngIf="activeForm === 'realizar-test'">Realizar Test</h2>
       <app-realizar-test *ngIf="activeForm === 'realizar-test'"></app-realizar-test>
 
+      <h2 *ngIf="activeForm === 'results'">Resultados de los Test</h2>
       <app-results *ngIf="activeForm === 'results'"></app-results>
 
-      <h2 *ngIf="activeForm === 'solicitar-cita'">Solicitar Cita</h2>
+      <h2 *ngIf="activeForm === 'solicitar-cita'">Reservar Cita</h2>
       <app-solicitar-cita *ngIf="activeForm === 'solicitar-cita'"></app-solicitar-cita>
 
       <h2 *ngIf="activeForm === 'calendario-citas'">Calendario de Citas</h2>
       <app-calendario-citas *ngIf="activeForm === 'calendario-citas'"></app-calendario-citas>
 
-      <h2 *ngIf="activeForm === 'inbox'">Bandeja de Entrada</h2>
-      <app-inbox *ngIf="activeForm === 'inbox'"></app-inbox>
+      <h2 *ngIf="activeForm === 'inscripcion-talleres'">Inscripción a Talleres</h2>
+      <app-talleres *ngIf="activeForm === 'talleres'"></app-talleres>
+
+      <h2 *ngIf="activeForm === 'talleres'">Talleres matriculados</h2>
+      <app-talleres *ngIf="activeForm === 'talleres'"></app-talleres>
+
+      <h2 *ngIf="activeForm === 'recursos'">Recursos de Autoayuda</h2>
+      <app-recursos *ngIf="activeForm === 'recursos'"></app-recursos>
 
       <h2 *ngIf="activeForm === 'foro'">Foro de Discusión</h2>
       <app-foro *ngIf="activeForm === 'foro'"></app-foro>
 
-      <h2 *ngIf="activeForm === 'talleres'">Talleres</h2>
-      <app-talleres *ngIf="activeForm === 'talleres'"></app-talleres>
-
-      <h2 *ngIf="activeForm === 'recursos'">Recursos</h2>
-      <app-recursos *ngIf="activeForm === 'recursos'"></app-recursos>
+      <h2 *ngIf="activeForm === 'inbox'">Bandeja de Entrada</h2>
+      <app-inbox *ngIf="activeForm === 'inbox'"></app-inbox>
     </div>
 
   </div>
