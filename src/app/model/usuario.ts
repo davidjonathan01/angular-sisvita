@@ -5,7 +5,6 @@ export interface Usuario{
     email: string;
     contrasenia: string;
     id_tipo_usuario: number;
+
     tipo_usuario: Tipo_Usuario
-
-
 }

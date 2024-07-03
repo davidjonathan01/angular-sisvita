@@ -25,7 +25,7 @@
             <div class="col-sm-5">
               <label for="inputGenero" class="col-sm-2 col-form-label">Género:</label>
               <div class="col-sm-5">
-                <select class="form-control" id="inputGenero" formControlName="id_genero" required>
+                <select class="form-control" id="id_genero" formControlName="id_genero" required>
                   <option value="" disabled selected>Seleccione el Género</option>
                   <option *ngFor="let genero of generos" [value]="genero.id_genero">{{ genero.nombre }}</option>
                 </select>
@@ -63,22 +63,29 @@
           <div class="row mb-3">
             <label for="inputDireccion" class="col-sm-2 col-form-label">Dirección:</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" id="inputDepartamento" placeholder="Consigne el departamento"
-                formControlName="direccion">
+              <select class="form-ubigeo" id="id_ubigeo" formControlName="id_ubigeo" required>
+                <option value="" disabled selected>Seleccione el Departamento</option>
+                <option *ngFor="let ubigeo of ubigeos" [value]="ubigeo.id_ubigeo">{{ ubigeo.departamento }}</option>
+              </select>
+            </div>
+
+            <div class="col-sm-3">
+              <select class="form-ubigeo" id="id_ubigeo" formControlName="id_ubigeo" required>
+                <option value="" disabled selected>Seleccione el Departamento</option>
+                <option *ngFor="let ubigeo of ubigeos" [value]="ubigeo.id_ubigeo">{{ ubigeo.provincia }}</option>
+              </select>
             </div>
             <div class="col-sm-3">
-              <input type="text" class="form-control" id="inputProvincia" placeholder="Consigne la provincia"
-                formControlName="direccion">
-            </div>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" id="inputDistrito" placeholder="Consigne el distrito"
-                formControlName="direccion">
+              <select class="form-ubigeo" id="id_ubigeo" formControlName="id_ubigeo" required>
+                <option value="" disabled selected>Seleccione el Departamento</option>
+                <option *ngFor="let ubigeo of ubigeos" [value]="ubigeo.id_ubigeo">{{ ubigeo.distrito }}</option>
+              </select>
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputCarrera" class="col-sm-2 col-form-label" >Carrera:</label>
             <div class="col-sm-10">
-              <select class="form-control" id="inputCarrera" formControlName="id_carrera" required>
+              <select class="form-control" id="id_carrera" formControlName="id_carrera" required>
                 <option value="" disabled selected>Seleccione la Carrera</option>
                 <option *ngFor="let carrera of carreras" [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
               </select>
