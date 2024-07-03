@@ -124,3 +124,76 @@
   border-radius: 4px;
 }
 
+/* Estilo para los títulos de los filtros */
+.filter-title {
+  background-color: #3a9999;
+  color: white;
+  padding: 10px;
+  font-size: 14px; /* Ajusta el tamaño de la letra aquí */
+  text-align: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex; /* Añadido para centrar verticalmente */
+  align-items: center; /* Añadido para centrar verticalmente */
+  justify-content: center; /* Añadido para centrar horizontalmente */
+  width: 100%; /* Ajusta el ancho según tus necesidades, puede ser en px o % */
+  max-width: 300px; /* Ejemplo de un ancho máximo, ajusta según sea necesario */
+  height: 30px; /* Ajusta el alto según tus necesidades */
+}
+
+/* Ajustar el margen para las opciones */
+.filter-option input {
+  margin-right: 10px;
+}
+
+/* Otros estilos para una mejor presentación */
+.container-fluid {
+  background-color: #fff8f0;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px;
+}
+
+.filter-title {
+  background-color: #00796b;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
+/* Estilo para el contenedor de las fechas */
+.date-filter {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada de fecha */
+.date-filter input[type="date"] {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+
+
+input[type="radio"] {
+  margin-right: 10px;
+}

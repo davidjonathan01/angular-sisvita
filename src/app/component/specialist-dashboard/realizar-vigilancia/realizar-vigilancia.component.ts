@@ -10,6 +10,7 @@ import { Invitacion } from '../../../model/invitacion';
 import { AuthService } from '../../../services/auth.service';
 import { Escala } from '../../../model/escala';
 import { MatIconModule } from '@angular/material/icon';
+import { Tipo_Test } from '../../../model/tipo_test';
 
 
 @Component({
@@ -28,13 +29,15 @@ export class RealizarVigilanciaComponent implements OnInit {
   inviteTestId: number | null = null;
   id_especialista: number | null = null; // Inicialmente null, será asignado dinámicamente
   selectedTestId: number | null = null; // Variable para almacenar el ID del test seleccionado para invitar
-
+  
+  //Variables para la ventana modal
   mostrarModal: boolean = false;
   modalTitle: string = '';
   modalData: any = null;
   modalType: string = '';
   notificacionSeleccionada: any = { correo: false, whatsapp: false };
 
+  //Variables para ordenar columnas
   originalResultados: Resultado[] = [];
   sortDirection: { [key: string]: string } = {};
   sortAscending: boolean = true; // Estado de la ordenación (ascendente por defecto)
@@ -43,6 +46,15 @@ export class RealizarVigilanciaComponent implements OnInit {
   lastSorted: string = ''; // Rastrea la última columna ordenada
   sortAscendingEscala: boolean = true; // Estado de la ordenación (ascendente por defecto) para escala
 
+  //Variables para Filtros
+  tipoTestSeleccionado: number | null = null; // Almacenar el tipo de test seleccionado
+  testsDisponiblesFilter: Test[] = []; // Almacenar todos los tests
+  tiposTest: Tipo_Test[] = []; // Almacenar los tipos de tests
+  estadoSeleccionado: number | null = null;
+  fechaInicio: Date | null = null;
+  fechaFin: Date | null = null;
+
+
   constructor(private realizarVigilanciaService: RealizarVigilanciaService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -50,6 +62,7 @@ export class RealizarVigilanciaComponent implements OnInit {
     if (this.id_especialista !== null) {
       this.cargarResultados();
       this.loadTests();
+      this.loadTipoTests(); // Cargar los tipos de tests
     } else {
       Swal.fire({
         icon: 'error',
@@ -89,6 +102,80 @@ export class RealizarVigilanciaComponent implements OnInit {
       }
     );
   }
+
+  loadTipoTests() {
+    this.realizarVigilanciaService.getTipoTests().subscribe(
+      (result: any) => {
+        this.tiposTest = result.data;
+      },
+      (err: any) => {
+        console.error('Error al cargar tipos de tests', err);
+      }
+    );
+  }
+
+  showTestsDisponiblesFilter() {
+    if (this.tipoTestSeleccionado !== null) {
+      this.testsDisponiblesFilter = this.tests.filter(test => test.id_tipo_test === this.tipoTestSeleccionado);
+      console.log(this.testsDisponiblesFilter)
+    } else {
+      this.tests = [];
+    }
+  }
+
+  filtrarResultados() {
+    let resultadosFiltrados = this.originalResultados;
+  
+    if (this.tipoTestSeleccionado !== null) {
+      resultadosFiltrados = resultadosFiltrados.filter(resultado => resultado.evaluacion.test.id_tipo_test === this.tipoTestSeleccionado);
+    }
+  
+    if (this.selectedTestId !== null) {
+      resultadosFiltrados = resultadosFiltrados.filter(resultado => resultado.evaluacion.test.id_test === this.selectedTestId);
+    }
+  
+    if (this.estadoSeleccionado !== null) {
+      resultadosFiltrados = resultadosFiltrados.filter(resultado => resultado.estado.id_estado === this.estadoSeleccionado);
+    }
+
+    if (this.fechaInicio !== null && this.fechaFin !== null) {
+      const fechaInicioSinHora = new Date(this.fechaInicio);
+      fechaInicioSinHora.setHours(0, 0, 0, 0);
+      const fechaFinSinHora = new Date(this.fechaFin);
+      fechaFinSinHora.setHours(23, 59, 59, 999);
+  
+      resultadosFiltrados = resultadosFiltrados.filter(resultado => {
+        const fecha = resultado.estado.id_estado === 5 ? new Date(resultado.fec_interpretacion) : new Date(resultado.evaluacion.fec_realizacion);
+        const fechaSinHora = new Date(fecha);
+        fechaSinHora.setHours(0, 0, 0, 0);
+        return fechaSinHora >= fechaInicioSinHora && fechaSinHora <= fechaFinSinHora;
+      });
+      console.log(fechaInicioSinHora);
+      console.log(fechaFinSinHora)
+      console.log(resultadosFiltrados);
+    }
+  
+    this.resultados = resultadosFiltrados;
+  }
+  
+  filtrarResultadosPorTipoTest() {
+    this.showTestsDisponiblesFilter();
+    this.filtrarResultados();
+  }
+  
+  onTestSeleccionadoChange() {
+    this.filtrarResultados();
+  }
+  
+  filtrarResultadosPorEstado() {
+    this.filtrarResultados();
+  }
+  
+  onFechaChange() {
+    this.filtrarResultados();
+  }
+
+  
 
   invitarTest(resultado: Resultado, inviteTestId: number | null) {
     if (this.inviteTestId !== null && this.id_especialista !== null) {

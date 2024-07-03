@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Resultado } from '../model/resultado';
 import { getConexionBackend } from '../constants';
 import { Test } from '../model/test';
-import { Estado } from '../model/estado';
+import { Tipo_Test } from '../model/tipo_test';
 import { Invitacion } from '../model/invitacion';
 
 @Injectable({
@@ -34,5 +34,10 @@ export class RealizarVigilanciaService {
   }
   getEscalasByTest(id_test: number): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL}get_escalas_by_test/${id_test}`);
+  }
+
+  // Nuevo método para obtener los tipos de tests
+  getTipoTests(): Observable<Tipo_Test[]> {
+    return this.http.get<Tipo_Test[]>(`${this.BASE_URL}get_tipo_tests`);
   }
 }

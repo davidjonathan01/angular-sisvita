@@ -5,6 +5,45 @@
     </mat-grid-tile>
   </mat-grid-list>
 
+  <div class="row filter-container">
+    <div class="col filter-group">
+      <label class="filter-title">Tipo de Test</label>
+      <div *ngFor="let tipo of tiposTest">
+        <input type="radio" [value]="tipo.id_tipo_test" [(ngModel)]="tipoTestSeleccionado" (change)="filtrarResultadosPorTipoTest()">
+        <label class="filter-option">{{ tipo.nombre }}</label>
+      </div>
+
+      <div *ngIf="testsDisponiblesFilter.length > 0">
+        <label class="filter-title">Tests:</label>
+        <div *ngFor="let test of testsDisponiblesFilter">
+          <input type="radio" [value]="test.id_test" name="testDisponible" [(ngModel)]="selectedTestId"(change)="onTestSeleccionadoChange()">
+          <label class="filter-option">{{ test.nombre }}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col filter-group">
+      <label class="filter-title">Estado de Resultado</label>
+      <div>
+        <input type="radio" [value]="4" name="estadoResultado" [(ngModel)]="estadoSeleccionado" (change)="filtrarResultadosPorEstado()">
+        <label class="filter-option">No Revisado</label>
+      </div>
+      <div>
+        <input type="radio" [value]="5" name="estadoResultado" [(ngModel)]="estadoSeleccionado" (change)="filtrarResultadosPorEstado()">
+        <label class="filter-option">Revisado</label>
+      </div>
+    </div>
+
+    <div class="col filter-group">
+      <label class="filter-title">Seleccione Rango de Fecha</label>
+      <div class="date-filter">
+        <input type="date" [(ngModel)]="fechaInicio" (change)="onFechaChange()">
+        <label>a</label>
+        <input type="date" [(ngModel)]="fechaFin" (change)="onFechaChange()">
+      </div>
+    </div>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -16,6 +55,7 @@
           <mat-icon button (click)="sortByEscala()">swap_vert</mat-icon>
         </th>
         <th>Score</th>
+        <th>Fecha</th> 
         <th>Paciente
           <mat-icon button (click)="sortByPaciente()">swap_vert</mat-icon>
         </th>
@@ -32,6 +72,7 @@
         <td>{{ resultado.evaluacion.test.nombre }}</td>
         <td>{{ resultado.escala.nombre }}</td>
         <td>{{ resultado.evaluacion.puntaje }}</td>
+        <td>{{ resultado.estado.id_estado === 5 ?  (resultado.fec_interpretacion | date:'dd/MM/yyyy'): (resultado.evaluacion.fec_realizacion | date:'dd/MM/yyyy')}}</td> <!-- Lógica para mostrar la fecha -->
         <td>
           <button class="btn btn-link" (click)="mostrarDetalles(resultado, 'paciente')">
             {{ resultado.evaluacion.paciente.persona.nombres }} {{ resultado.evaluacion.paciente.persona.apellidos }}
@@ -75,8 +116,8 @@
           <p><strong>Versión:</strong> {{ modalData.evaluacion.test.n_version }}</p>
           <p><strong>Idioma:</strong> {{ modalData.evaluacion.test.idioma.nombre }}</p>
           <p><strong>Puntaje:</strong> {{ modalData.evaluacion.puntaje }}</p>
-          <p><strong>Fecha de realización:</strong> {{ modalData.evaluacion.fec_realizacion | date }}</p>
-          <p><strong>Nivel de ansiedad original:</strong> {{ modalData.evaluacion.escala.nombre }}</p>
+          <p><strong>Fecha de realización:</strong> {{ modalData.evaluacion.fec_realizacion | date:'dd/MM/yyyy'  }}</p>
+          <p><strong>Nivel de ansiedad original:</strong> {{ modalData.evaluacion.escala.nombre}}</p>
         </ng-container>
         <ng-container *ngIf="modalType === 'invitaciones'">
           <label>Invitar a test:</label>

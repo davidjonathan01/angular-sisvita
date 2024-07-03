@@ -1,5 +1,6 @@
 export interface Test {
     id_test: number;
+    id_tipo_test: number;
     nombre: string;
     descripcion: string;
     n_preguntas: number;
