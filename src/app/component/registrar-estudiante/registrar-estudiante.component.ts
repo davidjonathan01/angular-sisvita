@@ -1,28 +1,39 @@
-import { Component, Inject, LOCALE_ID } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Estudiante } from '../../model/estudiante';
-import { EstudianteService } from '../../services/estudiante.service';
-import Swal from 'sweetalert2';
 import { CommonModule, formatDate } from '@angular/common';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import Swal from 'sweetalert2';
+import { Carrera } from '../../model/carrera';
+import { Estudiante } from '../../model/estudiante';
+import { Genero } from '../../model/genero';
+import { AuthService } from '../../services/auth.service';
+import { EstudianteService } from '../../services/estudiante.service';
+import { Ubigeo } from '../../model/ubigeo';
+
 
 @Component({
   selector: 'app-registrar-estudiante',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,NgxPaginationModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxPaginationModule],
   templateUrl: './registrar-estudiante.component.html',
   styleUrl: './registrar-estudiante.component.css'
 })
 export class RegistrarEstudianteComponent {
   estudianteArray: Estudiante[] = [];
+  generos: Genero[] = [];
+  carreras: Carrera[] = [];
+  ubigeos: Ubigeo[] = [];
+
   estudianteForm: FormGroup;
   offset: number;
-  isEdited:boolean=false;
-  page:number;
+  isEdited: boolean = false;
+  page: number;
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
-    private estudianteService: EstudianteService) {
+    private estudianteService: EstudianteService,
+    private authService: AuthService, private router: Router) {
     this.page = 1;
     this.offset = new Date().getTimezoneOffset();
     this.estudianteForm = new FormGroup({
@@ -89,8 +100,8 @@ export class RegistrarEstudianteComponent {
           });
         }
       );
+    }
   }
-}
 
   editarEstudiante(estudiante: Estudiante): void {
     Swal.fire({
@@ -146,32 +157,32 @@ export class RegistrarEstudianteComponent {
     );
   }
 
-  eliminarEstudiante(estudiante:Estudiante):void{
+  eliminarEstudiante(estudiante: Estudiante): void {
     Swal.fire({
       title: 'Esta seguro de eliminar la persona seleccionada?',
-      showCancelButton:true,
-      cancelButtonText:'No',
-      confirmButtonText:'Si',
-      focusCancel:true,
-    }).then((result)=>{
-      if(result.isConfirmed){
+      showCancelButton: true,
+      cancelButtonText: 'No',
+      confirmButtonText: 'Si',
+      focusCancel: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.estudianteService.eliminarEstudiante(estudiante.id_estudiante).subscribe(
-          (reult:any)=>{
+          (reult: any) => {
             console.log(estudiante);
             Swal.close();
             Swal.fire({
-              icon:'success',
+              icon: 'success',
               title: 'eliminarEstudiante ...',
               text: 'Se elimino exitosamente al estudiante!',
             });
             this.getEstudiantes();
           },
-          (err:any)=>{
+          (err: any) => {
             console.log(estudiante);
             console.log(err);
             Swal.close();
             Swal.fire({
-              icon:'error',
+              icon: 'error',
               title: 'Advertencia ...',
               text: 'Ah ocurrido un error al eliminar Estudiante!',
             });
@@ -183,9 +194,39 @@ export class RegistrarEstudianteComponent {
   }//end metodo
 
 
+  loadGeneros() {
+    this.authService.getGeneros().subscribe(
+      (result: any) => {
+        this.generos = result.data;
+      },
+      (err: any) => {
+        console.error('Error al cargar generos', err);
+      }
+    );
+  }
+
+  loadUbigeos() {
+    this.authService.getUbigeos().subscribe(
+      (result: any) => {
+        this.ubigeos = result.data;
+      },
+      (err: any) => {
+        console.error('Error al cargar ubigeos', err);
+      }
+    );
+  }
+
+  loadCarreras() {
+    this.authService.getCarreras().subscribe(
+      (result: any) => {
+        this.carreras = result.data;
+      },
+      (err: any) => {
+        console.error('Error al cargar carreras', err);
+      }
+    );
+  }
   
 
 
-
-
-}
+  }

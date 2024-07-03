@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { getConexionBackend } from '../constants';
 import { Tipo_Usuario } from '../model/tipo_usuario';
+import { Genero } from '../model/genero';
+import { Ubigeo } from '../model/ubigeo';
+import { Carrera } from '../model/carrera';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +30,33 @@ export class AuthService {
       catchError(error => {
         console.error(error);
         throw 'Error al obtener tipos de usuario: ' + error.message;
+      })
+    );
+  }
+
+  getGeneros(): Observable<Genero[]> {
+    return this.http.get<Genero[]>(`${this.BASE_URL}/genero_routes/get_generos`).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener géneros: ' + error.message;
+      })
+    );
+  }
+
+  getUbigeos(): Observable<Ubigeo[]> {
+    return this.http.get<Ubigeo[]>(`${this.BASE_URL}/ubigeo_routes/get_ubigeos`).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener ubigeo: ' + error.message;
+      })
+    );
+  }
+
+  getCarreras(): Observable<Carrera[]> {
+    return this.http.get<Carrera[]>(`${this.BASE_URL}/carrera_routes/get_carreras`).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener carreras: ' + error.message;
       })
     );
   }
