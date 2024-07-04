@@ -44,8 +44,6 @@ export class AuthService {
     );
   }
 
-  
-
 
   getCarreras(): Observable<Carrera[]> {
     return this.http.get<Carrera[]>(`${this.BASE_URL}/carrera_routes/get_carreras`).pipe(
