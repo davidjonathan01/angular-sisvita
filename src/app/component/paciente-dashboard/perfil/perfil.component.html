@@ -9,25 +9,25 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p class="text-justify">- Nombres:</p>
+                <p class="text-justify">- Nombres: {{ paciente?.persona?.nombres }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Apellidos:</p>
+                <p class="text-justify">- Apellidos: {{ paciente?.persona?.apellidos }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Género:</p>
+                <p class="text-justify">- Género: {{ paciente?.persona?.genero }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Documento de identidad:</p>
+                <p class="text-justify">- Documento de identidad: {{ paciente?.persona?.doc_identidad }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Fecha de nacimiento:</p>
+                <p class="text-justify">- Fecha de nacimiento: {{ paciente?.persona?.fec_nacimiento }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Número de teléfono:</p>
+                <p class="text-justify">- Número de teléfono: {{ paciente?.persona?.num_telefono }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Correo electrónico:</p>
+                <p class="text-justify">- Correo electrónico: {{ paciente?.usuario?.email }}</p>
             </div>
         </div>
 
@@ -40,13 +40,13 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p class="text-justify">- Dirección:</p>
+                <p class="text-justify">- Dirección: {{ paciente?.ubigeo?.departamento }}, {{ paciente?.ubigeo?.provincia }}, {{ paciente?.ubigeo?.distrito }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Condición:</p>
+                <p class="text-justify">- Condición: {{ paciente?.condicion?.nombre }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Carrera:</p>
+                <p class="text-justify">- Carrera: {{ paciente?.carrera?.nombre }}</p>
             </div>
         </div>
     </div>

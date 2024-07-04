@@ -40,4 +40,13 @@ export class PacienteService {
   eliminarPaciente (id: number){
       return this.http.delete(`${this.BASE_URL}delete_paciente/${id}`);
   }
+
+  getUbigeo (departamento: string, provincia: string, distrito: string){
+    const body = {
+      departamento,
+      provincia,
+      distrito
+    };
+    return this.http.post(`${this.BASE_URL}identificar_ubigeo_routes/identificar_ubigeo`, body);
+  }
 }

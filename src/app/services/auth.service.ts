@@ -134,4 +134,6 @@ export class AuthService {
     const id = localStorage.getItem('administradorId');
     return id ? parseInt(id, 10) : null;
   }
+
+  
 }
