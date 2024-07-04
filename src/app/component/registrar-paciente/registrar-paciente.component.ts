@@ -70,7 +70,6 @@ export class RegistrarPacienteComponent {
       fec_nacimiento: new FormControl('', [Validators.required]),
       id_genero: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      direccion: new FormControl('', [Validators.required, Validators.minLength(5)]),
       num_telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15)]),
       id_carrera: new FormControl('', [Validators.required]),
       contrasenia: new FormControl('', [Validators.required, Validators.minLength(6)]),

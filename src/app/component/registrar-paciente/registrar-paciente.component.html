@@ -22,19 +22,25 @@
             </div>
           </div>
           <div class="row mb-3">
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label for="id_genero" class="form-label">Género:</label>
-                <select class="form-control" id="id_genero" formControlName="id_genero" required title="Seleccione su Género">
-                  <option value="" disabled selected>Seleccione el Género</option>
-                  <option *ngFor="let genero of generos" [value]="genero.id_genero">{{ genero.nombre }}</option>
-                </select>
+            <div class="col-sm-6">
+              <div class="form-group row">
+                <label for="id_genero" class="form-label col-sm-3">Género:</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="id_genero" formControlName="id_genero" required
+                    title="Seleccione su Género">
+                    <option value="" disabled selected>Seleccione el Género</option>
+                    <option *ngFor="let genero of generos" [value]="genero.id_genero">{{ genero.nombre }}</option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label for="inputDocIdentidad" class="form-label">Documento de Identidad:</label>
-                <input type="text" class="form-control" id="inputDocIdentidad" placeholder="Consigne el Documento de Identidad" formControlName="doc_identidad">
+            <div class="col-sm-6">
+              <div class="form-group row">
+                <label for="inputDocIdentidad" class="form-label col-sm-3">Documento de Identidad:</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputDocIdentidad"
+                    placeholder="Consigne el Documento de Identidad" formControlName="doc_identidad">
+                </div>
               </div>
             </div>
           </div>
@@ -88,6 +94,17 @@
                 <option *ngFor="let distrito of distritos_filtrados" [value]="distrito">
                   {{ distrito }}
                 </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="id_carrera" class="col-sm-2 col-form-label">Carrera:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="id_carrera" formControlName="id_carrera" required
+                title="Seleccione su Carrera">
+                <option value="" disabled selected>Seleccione la Carrera</option>
+                <option *ngFor="let carrera of carreras" [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
               </select>
             </div>
           </div>
