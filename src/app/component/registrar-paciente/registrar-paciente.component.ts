@@ -10,6 +10,7 @@ import { Paciente } from '../../model/paciente';
 import { Ubigeo } from '../../model/ubigeo';
 import { AuthService } from '../../services/auth.service';
 import { PacienteService } from '../../services/paciente.service';
+import { Condicion } from '../../model/condicion';
 
 
 
@@ -25,6 +26,8 @@ export class RegistrarPacienteComponent {
   generos: Genero[] = [];
   carreras: Carrera[] = [];
   ubigeos: Ubigeo[] = [];
+  condiciones: Condicion[] = [];
+
   departamentos_filtrados: string[] = [];
   provincias_filtradas: Ubigeo[] = [];
   distritos_filtrados: Ubigeo[] = [];
@@ -32,6 +35,8 @@ export class RegistrarPacienteComponent {
   provincia_seleccionada: string = '';
 
   pacienteForm: FormGroup;
+  usuarioForm: FormGroup;
+  personaForm: FormGroup;
   offset: number;
   isEdited: boolean = false;
   page: number;
@@ -62,17 +67,31 @@ export class RegistrarPacienteComponent {
     private authService: AuthService, private router: Router) {
     this.page = 1;
     this.offset = new Date().getTimezoneOffset();
-    this.pacienteForm = new FormGroup({
-      id_paciente: new FormControl('', []),
-      doc_identidad: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]),
+
+    this.usuarioForm = new FormGroup({
+      id_usuario: new FormControl('', []),
+      id_tipo_usuario: new FormControl('1', []),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      contrasenia: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
+
+    this.personaForm = new FormGroup({
+      id_persona: new FormControl('', []),
+      doc_identidad: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]),
       nombres: new FormControl('', [Validators.required, Validators.minLength(2)]),
       apellidos: new FormControl('', [Validators.required, Validators.minLength(2)]),
       fec_nacimiento: new FormControl('', [Validators.required]),
       id_genero: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
       num_telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15)]),
-      id_carrera: new FormControl('', [Validators.required]),
-      contrasenia: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
+
+    this.pacienteForm = new FormGroup({
+      id_paciente: new FormControl('', []),
+      id_ubigeo: new FormControl('', [Validators.required]),
+      id_condicion: new FormControl('', [Validators.required]),
+      id_carrera: new FormControl(''),
+      id_persona: new FormControl('', [Validators.required]),
+      id_usuario: new FormControl('', [Validators.required]),
       id_ubigeo_departamento: new FormControl('', [Validators.required]),
       id_ubigeo_provincia: new FormControl('', [Validators.required]),
       id_ubigeo_distrito: new FormControl('', [Validators.required])
@@ -84,6 +103,7 @@ export class RegistrarPacienteComponent {
     this.loadCarreras();
     this.loadGeneros();
     this.loadUbigeos();
+    this.loadCondiciones();
     this.loadDepartamentos();
     this.loadProvincias();
     this.loadDistritos();
@@ -294,6 +314,17 @@ export class RegistrarPacienteComponent {
       },
       (err: any) => {
         console.error('Error al cargar carreras', err);
+      }
+    );
+  }
+
+  loadCondiciones() {
+    this.authService.getCondiciones().subscribe(
+      (result: any) => {
+        this.condiciones = result.data;
+      },
+      (err: any) => {
+        console.error('Error al cargar condiciones', err);
       }
     );
   }

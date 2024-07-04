@@ -22,7 +22,15 @@ export class PacienteService {
   }
 
   registrarPaciente(form: any){
-      return this.http.post(`${this.BASE_URL}create_paciente`, form);
+      return this.http.post(`${this.BASE_URL}create_paciente`, form)
+  }
+
+  registrarUsuario(form: any){
+      return this.http.post(`${this.BASE_URL}create_usuario`, form)
+  }
+
+  registrarPersona(form: any){
+      return this.http.post(`${this.BASE_URL}create_persona`, form)
   }
 
   actualizarPaciente (id: number, form: any){

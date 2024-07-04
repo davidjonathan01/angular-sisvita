@@ -7,6 +7,7 @@ import { Carrera } from '../model/carrera';
 import { Genero } from '../model/genero';
 import { Tipo_Usuario } from '../model/tipo-usuario';
 import { Ubigeo } from '../model/ubigeo';
+import { Condicion } from '../model/condicion';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +86,15 @@ export class AuthService {
       catchError(error => {
         console.error(error);
         throw 'Error al obtener carreras: ' + error.message;
+      })
+    );
+  }
+
+  getCondiciones(): Observable<Condicion[]> {
+    return this.http.get<Condicion[]>(`${this.BASE_URL}/condicion_routes/get_condiciones`).pipe(
+      catchError(error => {
+        console.error(error);
+        throw 'Error al obtener condiciones: ' + error.message;
       })
     );
   }
