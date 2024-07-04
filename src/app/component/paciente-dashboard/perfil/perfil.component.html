@@ -15,7 +15,7 @@
                 <p class="text-justify">- Apellidos: {{ paciente?.persona?.apellidos }}</p>
             </div>
             <div class="col-md-12">
-                <p class="text-justify">- Género: {{ paciente?.persona?.genero }}</p>
+                <p class="text-justify">- Género: {{ paciente?.genero?.nombre }}</p>
             </div>
             <div class="col-md-12">
                 <p class="text-justify">- Documento de identidad: {{ paciente?.persona?.doc_identidad }}</p>
@@ -31,7 +31,6 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-12">
                 <p class="text-center">Información específica del usuario</p>
@@ -40,7 +39,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p class="text-justify">- Dirección: {{ paciente?.ubigeo?.departamento }}, {{ paciente?.ubigeo?.provincia }}, {{ paciente?.ubigeo?.distrito }}</p>
+                <p class="text-justify">- Dirección: {{ paciente?.ubigeo?.departamento }}</p>
             </div>
             <div class="col-md-12">
                 <p class="text-justify">- Condición: {{ paciente?.condicion?.nombre }}</p>
