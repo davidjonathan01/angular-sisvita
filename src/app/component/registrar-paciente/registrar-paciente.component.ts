@@ -8,7 +8,9 @@ import { Carrera } from '../../model/carrera';
 import { Condicion } from '../../model/condicion';
 import { Genero } from '../../model/genero';
 import { Paciente } from '../../model/paciente';
+import { PersonaResponse } from '../../model/persona-response';
 import { Ubigeo } from '../../model/ubigeo';
+import { UsuarioResponse } from '../../model/usuario-response';
 import { AuthService } from '../../services/auth.service';
 import { PacienteService } from '../../services/paciente.service';
 
@@ -59,6 +61,28 @@ export class RegistrarPacienteComponent {
     console.log('Provincia seleccionada:', this.provincia_seleccionada);
     this.loadDistritos();
     // Por ejemplo, cargar distritos basados en el departamento y provincia seleccionados
+  }
+
+  // Suponiendo que tienes un método para manejar la selección de un distrito
+  onDistritoSeleccionado(departamento: string, provincia: string, distrito: string): void {
+    // Llamar a la API para obtener el id_ubigeo basado en el departamento, provincia y distrito seleccionados
+    this.pacienteService.getUbigeo(departamento, provincia, distrito).subscribe({
+      next: (response: any) => {
+        if ('data' in response && 'id_ubigeo' in response.data) {
+          const idUbigeo = response.data.id_ubigeo;
+          if (this.pacienteForm && this.pacienteForm.get('id_ubigeo')) {
+            this.pacienteForm.get('id_ubigeo')?.setValue(idUbigeo);
+          } else {
+            console.error('El formulario o el campo id_ubigeo no están disponibles');
+          }
+        } else {
+          console.error('La respuesta no contiene el campo id_ubigeo', response);
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener el id_ubigeo', error);
+      }
+    });
   }
 
   constructor(
@@ -127,7 +151,56 @@ export class RegistrarPacienteComponent {
     );
   }
 
+
   registrarPaciente(): void {
+    if (this.usuarioForm.valid && this.personaForm.valid && this.pacienteForm.valid) {
+      // Primero, registrar el usuario
+      this.pacienteService.registrarUsuario(this.usuarioForm.value).subscribe({
+        next: (resultadoUsuario: any) => {
+          // Aquí asumimos que el backend devuelve el ID del usuario creado
+          const usuarioResponse = resultadoUsuario as UsuarioResponse;
+          const idUsuario = resultadoUsuario.data.id_usuario;
+          // Ahora, establecer el ID del usuario en el formulario de la persona y registrar la persona
+          
+          this.pacienteService.registrarPersona(this.personaForm.value).subscribe({
+            next: (resultadoPersona: any) => {
+              // Similarmente, asumimos que el backend devuelve el ID de la persona creada
+              const personaResponse = resultadoPersona as PersonaResponse;
+              const idPersona = resultadoPersona.data.id_persona;
+              // Establecer el ID de la persona y el ID del usuario en el formulario del paciente
+              this.pacienteForm.get('id_persona')!.setValue(idPersona);
+              this.pacienteForm.get('id_usuario')!.setValue(idUsuario);
+              // Finalmente, registrar el paciente
+              this.pacienteService.registrarPaciente(this.pacienteForm.value).subscribe({
+                next: (resultadoPaciente) => {
+                  // Manejar la respuesta exitosa, por ejemplo, mostrando una alerta al usuario
+                  console.log('Paciente registrado con éxito', resultadoPaciente);
+                },
+                error: (error) => {
+                  // Manejar errores al registrar el paciente
+                  console.error('Error al registrar el paciente', error);
+                }
+              });
+            },
+            error: (error) => {
+              // Manejar errores al registrar la persona
+              console.error('Error al registrar la persona', error);
+            }
+          });
+        },
+        error: (error) => {
+          // Manejar errores al registrar el usuario
+          console.error('Error al registrar el usuario', error);
+        }
+      });
+    } else {
+      // Manejar la validación fallida de los formularios
+      console.error('Formularios no válidos');
+    }
+  }
+
+
+  /*registrarPaciente(): void {
     console.log('test');
     console.log(this.pacienteForm.value);
     if (this.isEdited) {
@@ -157,7 +230,7 @@ export class RegistrarPacienteComponent {
         }
       );
     }
-  }
+  }*/
 
   editarPaciente(paciente: Paciente): void {
     Swal.fire({
