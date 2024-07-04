@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getConexionBackend } from '../constants';
 import { Paciente } from '../model/paciente';
+import { Especialista } from '../model/especialista';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class MostrarPerfilService {
 
   getPerfilPaciente(idPaciente: number): Observable<any> {
     return this.http.get<Paciente>(`${this.BASE_URL}/monstrar_perfil/get_paciente/${idPaciente}`);
+  }
+
+  getPerfilEspecialista(idEspecialista: number): Observable<any> {
+    return this.http.get<Especialista>(`${this.BASE_URL}/monstrar_perfil/get_especialista/${idEspecialista}`);
   }
 
 }

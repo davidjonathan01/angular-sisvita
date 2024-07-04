@@ -28,11 +28,13 @@
     </div>
     <!--<h2 *ngIf="activeForm === 'evaluate'">Resultados Recibidos</h2>-->
     <app-realizar-vigilancia *ngIf="activeForm === 'surveillance'"></app-realizar-vigilancia>
+    <app-perfil *ngIf="activeForm === 'perfil'"></app-perfil>
+
 
     <h2 *ngIf="activeForm === 'Pacientes'">Ver Pacientes</h2>
     <h2 *ngIf="activeForm === 'tests_calificar'">Test Pendientes</h2>
     <h2 *ngIf="activeForm === 'calendar'">Calendario</h2>
-    <h2 *ngIf="activeForm === 'recursos'">Recursos Disponibles</h2>
+    <h2 *ngIf="activeForm === 'recursos'">Recursos Disponibles</h2>  
 
     
     <!-- Puedes agregar más secciones según sea necesario -->
