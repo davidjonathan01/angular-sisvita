@@ -1,0 +1,35 @@
+<body>
+    <div class="container">
+  
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-center">Información general del administrador</p>
+        </div>
+      </div>
+  
+      <div class="row" >
+        <div class="col-md-12">
+          <p class="text-justify">- Nombres: {{ administrador?.persona?.nombres }}</p>
+        </div>
+        <div class="col-md-12">
+          <p class="text-justify">- Apellidos: {{ administrador?.persona?.apellidos }}</p>
+        </div>
+        <div class="col-md-12">
+          <p class="text-justify">- Género: {{ administrador?.persona?.genero?.nombre }}</p>
+        </div>
+        <div class="col-md-12">
+          <p class="text-justify">- Documento de identidad: {{ administrador?.persona?.doc_identidad }}</p>
+        </div>
+        <div class="col-md-12">
+          <p class="text-justify">- Fecha de nacimiento: {{ administrador?.persona?.fec_nacimiento }}</p>
+        </div>
+        <div class="col-md-12">
+          <p class="text-justify">- Número de teléfono: {{ administrador?.persona?.num_telefono }}</p>
+        </div>
+        <div class="col-md-12">
+          <p class="text-justify">- Correo electrónico: {{ administrador?.usuario?.email }}</p>
+        </div>
+      </div>
+  
+    </div>
+  </body>

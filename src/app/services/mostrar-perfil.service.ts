@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { getConexionBackend } from '../constants';
 import { Paciente } from '../model/paciente';
 import { Especialista } from '../model/especialista';
+import { Administrador } from '../model/administrador';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class MostrarPerfilService {
 
   getPerfilEspecialista(idEspecialista: number): Observable<any> {
     return this.http.get<Especialista>(`${this.BASE_URL}/monstrar_perfil/get_especialista/${idEspecialista}`);
+  }
+
+  getPerfilAdministrador(idAdministrador: number): Observable<any> {
+    return this.http.get<Administrador>(`${this.BASE_URL}/monstrar_perfil/get_administrador/${idAdministrador}`);
   }
 
 }

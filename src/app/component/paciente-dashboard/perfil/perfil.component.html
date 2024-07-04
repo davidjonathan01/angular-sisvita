@@ -39,7 +39,13 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p class="text-justify">- Dirección: {{ paciente?.ubigeo?.departamento }}</p>
+                <p class="text-justify">- Departamento: {{ paciente?.ubigeo?.departamento }}</p>
+            </div>
+            <div class="col-md-12">
+                <p class="text-justify">- Provincia: {{ paciente?.ubigeo?.provincia }}</p>
+            </div>
+            <div class="col-md-12">
+                <p class="text-justify">- Distrito: {{ paciente?.ubigeo?.distrito }}</p>
             </div>
             <div class="col-md-12">
                 <p class="text-justify">- Condición: {{ paciente?.condicion?.nombre }}</p>
