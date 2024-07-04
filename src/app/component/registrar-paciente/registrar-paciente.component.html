@@ -62,83 +62,71 @@
                 formControlName="num_telefono">
             </div>
           </div>
-        </form>
 
-        <form [formGroup]="pacienteForm">
-          <div class="row mb-3">
-            <label for="inputDepartamento" class="col-sm-2 col-form-label">Ubigeo:</label>
-            <div class="col-sm-3">
-              <select id="inputDepartamento" class="form-control" formControlName="id_ubigeo_departamento"
-                (change)="onDepartamentoSeleccionado($event)" required title="Seleccione el Departamento">
-                <option value="" disabled selected>Seleccione el Departamento</option>
-                <option *ngFor="let departamento of departamentos_filtrados" [value]="departamento">
-                  {{ departamento }}
-                </option>
-              </select>
-            </div>
-            <div class="col-sm-3">
-              <select id="inputProvincia" class="form-control" formControlName="id_ubigeo_provincia"
-                (change)="onProvinciaSeleccionada($event)" required title="Seleccione la Provincia">
-                <option value="" disabled selected>Seleccione la Provincia</option>
-                <option *ngFor="let provincia of provincias_filtradas" [value]="provincia">
-                  {{ provincia }}
-                </option>
-              </select>
-            </div>
-            <div class="col-sm-3">
-              <select class="form-control" id="inputDistrito" formControlName="id_ubigeo_distrito" required
-                title="Seleccione el Distrito">
-                <option value="" disabled selected>Seleccione el Distrito</option>
-                <option *ngFor="let distrito of distritos_filtrados" [value]="distrito">
-                  {{ distrito }}
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <label for="id_condicion" class="col-sm-2 col-form-label">Condición:</label>
-            <div class="col-sm-10">
-              <select class="form-control" id="id_condicion" formControlName="id_condicion" required
-                title="Seleccione su Condición">
-                <option value="" disabled selected>Seleccione la Condición</option>
-                <option *ngFor="let condicion of condiciones" [value]="condicion.id_condicion">{{ condicion.nombre }}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <label for="id_carrera" class="col-sm-2 col-form-label">Carrera:</label>
-            <div class="col-sm-10">
-              <select class="form-control" id="id_carrera" formControlName="id_carrera" required
-                title="Seleccione su Carrera">
-                <option value="" disabled selected>Seleccione la Carrera</option>
-                <option *ngFor="let carrera of carreras" [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
-              </select>
-            </div>
-          </div>
-          
-        </form>
-
-        <form [formGroup]="usuarioForm">
           <div class="row mb-3">
             <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail" placeholder="Consigne el Email"
-                formControlName="email">
+              <input type="email" class="form-control" id="inputEmail" placeholder="Consigne el Número de Teléfono" formControlName="email">
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="inputContrasenia" class="col-sm-2 col-form-label">Contraseña:</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputContrasenia" placeholder="Consigne su contraseña"
-                formControlName="contrasenia">
+              <input type="email" class="form-control" id="inputContrasenia" placeholder="Consigne el Número de Teléfono" formControlName="contrasenia">
             </div>
           </div>
+
+          <div class="row mb-3">
+            <label for="departamento" class="col-sm-2 col-form-label">Departamento:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="departamento" formControlName="departamento_seleccionado" (change)="onDepartamentoChange()">
+                <option *ngFor="let depto of departamentos_filtrados" [value]="depto">{{ depto }}</option>
+              </select>
+            </div>
+          </div>
+        
+          <div class="row mb-3">
+            <label for="provincia" class="col-sm-2 col-form-label">Provincia:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="provincia" formControlName="provincia_seleccionada" (change)="onProvinciaChange()">
+                <option *ngFor="let prov of provincias_filtradas" [value]="prov.provincia">{{ prov.provincia }}</option>
+              </select>
+            </div>
+          </div>
+        
+          <div class="row mb-3">
+            <label for="distrito" class="col-sm-2 col-form-label">Distrito:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="distrito" formControlName="id_ubigeo">
+                <option *ngFor="let dist of distritos_filtrados" [value]="dist.id_ubigeo">{{ dist.distrito }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="condicion" class="col-sm-2 col-form-label">Condición:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="condicion" formControlName="id_condicion" (change)="onCondicionChange()">
+                <option *ngFor="let cond of condiciones" [value]="cond.id_condicion">{{ cond.nombre }}</option>
+              </select>
+            </div>
+          </div>
+          
+          <div *ngIf="carrerasFilter.length > 0" class="row mb-3">
+            <label for="carrera" class="col-sm-2 col-form-label">Carrera:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="carrera" formControlName="id_carrera">
+                <option *ngFor="let carrera of carreras" [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary" (click)="registrarPaciente()">Registrar</button>
+
+
         </form>
-        <button type="submit" class="btn btn-primary" [disabled]="!personaForm.valid || !pacienteForm.valid || !usuarioForm.valid"
-            (click)="registrarPaciente()">Registrar</button>
+
 
         
 
