@@ -6,7 +6,10 @@
     <div class="card">
       <div class="card-body">
         <h1 class="card-title text-center">Formulario de Registro del Paciente</h1>
-        <form [formGroup]="pacienteForm">
+
+        
+
+        <form [formGroup]="personaForm">
           <div class="row mb-3">
             <label for="inputNombres" class="col-sm-2 col-form-label">Nombres:</label>
             <div class="col-sm-10">
@@ -21,6 +24,7 @@
                 formControlName="apellidos">
             </div>
           </div>
+
           <div class="row mb-3">
             <div class="col-sm-6">
               <div class="form-group row">
@@ -58,15 +62,9 @@
                 formControlName="num_telefono">
             </div>
           </div>
-          <div class="row mb-3">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail" placeholder="Consigne el Email"
-                formControlName="email">
-            </div>
-          </div>
+        </form>
 
-
+        <form [formGroup]="pacienteForm">
           <div class="row mb-3">
             <label for="inputDepartamento" class="col-sm-2 col-form-label">Ubigeo:</label>
             <div class="col-sm-3">
@@ -119,6 +117,17 @@
               </select>
             </div>
           </div>
+          
+        </form>
+
+        <form [formGroup]="usuarioForm">
+          <div class="row mb-3">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail" placeholder="Consigne el Email"
+                formControlName="email">
+            </div>
+          </div>
 
           <div class="row mb-3">
             <label for="inputContrasenia" class="col-sm-2 col-form-label">Contraseña:</label>
@@ -127,9 +136,12 @@
                 formControlName="contrasenia">
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="pacienteForm.invalid"
-            (click)="registrarPaciente()">Registrar</button>
         </form>
+        <button type="submit" class="btn btn-primary" [disabled]="!personaForm.valid || !pacienteForm.valid || !usuarioForm.valid"
+            (click)="registrarPaciente()">Registrar</button>
+
+        
+
       </div><!-- end card-body -->
     </div><!-- end card cabecera -->
 

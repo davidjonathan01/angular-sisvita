@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import Swal from 'sweetalert2';
 import { Carrera } from '../../model/carrera';
+import { Condicion } from '../../model/condicion';
 import { Genero } from '../../model/genero';
 import { Paciente } from '../../model/paciente';
 import { Ubigeo } from '../../model/ubigeo';
 import { AuthService } from '../../services/auth.service';
 import { PacienteService } from '../../services/paciente.service';
-import { Condicion } from '../../model/condicion';
 
 
 
@@ -87,16 +87,18 @@ export class RegistrarPacienteComponent {
 
     this.pacienteForm = new FormGroup({
       id_paciente: new FormControl('', []),
-      id_ubigeo: new FormControl('', [Validators.required]),
+      //id_ubigeo: new FormControl('', [Validators.required]),
       id_condicion: new FormControl('', [Validators.required]),
       id_carrera: new FormControl(''),
-      id_persona: new FormControl('', [Validators.required]),
-      id_usuario: new FormControl('', [Validators.required]),
+      //id_persona: new FormControl('', [Validators.required]),
+      //id_usuario: new FormControl('', [Validators.required]),
       id_ubigeo_departamento: new FormControl('', [Validators.required]),
       id_ubigeo_provincia: new FormControl('', [Validators.required]),
       id_ubigeo_distrito: new FormControl('', [Validators.required])
     });
   }
+
+
 
   ngOnInit(): void {
     this.getPacientes();
