@@ -1,37 +1,37 @@
 /* Estilos generales */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e0f7fa; /* Celeste pastel muy claro */
-  color: #333;
+  background-color: #f0f8ff; /* Fondo azul claro */
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  color: #333; /* Texto color gris oscuro */
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 20px auto;
   padding: 20px;
 }
 
-h1, h2 {
-  color: #00796b; /* Celeste oscuro */
-  margin: 0;
-}
-
-h1 {
-  font-size: 2.5em;
+.block {
+  background-color: #ffffff; /* Fondo blanco para los bloques */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-h2 {
-  font-size: 2em;
-  margin-bottom: 15px;
+.block h1, .block h2 {
+  color: #005b96; /* Color azul oscuro para los encabezados */
+  text-align: center;
 }
 
-p {
-  color: #004d40; /* Celeste más oscuro */
-  line-height: 1.6;
-  margin-bottom: 20px;
+.block p {
+  margin: 10px 0;
+}
+
+.block-large {
+  padding: 40px;
 }
 
 .text-center {
@@ -42,52 +42,25 @@ p {
   text-align: left;
 }
 
-.mt-5 {
-  margin-top: 3rem;
-}
-
-.p-3 {
-  padding: 1rem;
-}
-
-.bg-info {
-  background-color: #b2ebf2; /* Celeste claro pastel */
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.bg-info-subtle {
-  background-color: #e0f7fa; /* Celeste muy claro pastel */
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.rounded {
-  border-radius: 10px;
-}
-
-.block {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #e0f7fa; /* Celeste muy claro pastel */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
-  .row {
-      display: block;
-      margin: 0 -10px;
+  .container {
+      padding: 15px;
   }
+  .block {
+      padding: 20px;
+  }
+  .block-large {
+      padding: 30px;
+  }
+}
 
-  .col-md-6 {
-      width: 100%;
-      padding: 10px 0;
-  }
+/* Estilos para bloques divididos */
+.block-split {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
 
-  .col-md-12 {
-      width: 100%;
-      padding: 10px 0;
-  }
+.block-split .block {
+  flex: 1;
 }

@@ -9,13 +9,14 @@ import { ForoComponent } from "./foro/foro.component";
 import { TalleresComponent } from "./talleres/talleres.component";
 import { RecursosComponent } from "./recursos/recursos.component";
 import { PerfilComponent } from "./perfil/perfil.component";
+import { HomeComponent } from "../home/home.component";
 
 @Component({
     selector: 'app-paciente-dashboard',
     standalone: true,
     templateUrl: './paciente-dashboard.component.html',
     styleUrl: './paciente-dashboard.component.css',
-    imports: [CommonModule, RealizarTestComponent, ResultsComponent, SolicitarCitaComponent, CalendarioCitasComponent, InboxComponent, ForoComponent, TalleresComponent, RecursosComponent, PerfilComponent]
+    imports: [CommonModule, RealizarTestComponent, ResultsComponent, SolicitarCitaComponent, CalendarioCitasComponent, InboxComponent, ForoComponent, TalleresComponent, RecursosComponent, PerfilComponent, HomeComponent]
 })
 export class PacienteDashboardComponent {
   activeForm: string = '';

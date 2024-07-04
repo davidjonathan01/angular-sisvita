@@ -12,6 +12,7 @@
         <li (click)="showForm('recursos')">Recursos de autoayuda</li>
         <li (click)="showForm('foro')">Foro de discusión</li>
         <li (click)="showForm('inbox')">Bandeja de Entrada</li>
+        <li (click)="showForm('salir')">Cerrar sesión</li>
       </ul>
 
       <div class="back-button">
@@ -49,6 +50,8 @@
 
       <h2 *ngIf="activeForm === 'inbox'">Bandeja de Entrada</h2>
       <app-inbox *ngIf="activeForm === 'inbox'"></app-inbox>
+
+      <h2 *ngIf="activeForm === 'salir'">Bandeja de Entrada</h2>
     </div>
 
   </div>
