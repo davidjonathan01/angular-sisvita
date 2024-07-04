@@ -44,14 +44,6 @@ export class AuthService {
     );
   }
 
-  getUbigeos(): Observable<Ubigeo[]> {
-    return this.http.get<Ubigeo[]>(`${this.BASE_URL}/ubigeo_routes/get_ubigeos`).pipe(
-      catchError(error => {
-        console.error(error);
-        throw 'Error al obtener ubigeo: ' + error.message;
-      })
-    );
-  }
   
 
 
