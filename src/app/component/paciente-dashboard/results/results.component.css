@@ -18,6 +18,26 @@ mat-grid-tile {
   margin-bottom: 20px; /* Espacio inferior entre el grid y otros elementos */
 }
 
+.modal {
+  display: block; /* Asegura que el modal se muestra */
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+.modal-dialog {
+  max-width: 800px; /* Ajusta el ancho del modal */
+  margin: 1.75rem auto; /* Centra el modal verticalmente */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  margin: 0;
+}
+
 .filter-container {
   margin-bottom: 20px;
 }
@@ -42,36 +62,7 @@ mat-grid-tile {
   margin: 5px 0;
 }
 
-.modal.show {
-  display: block;
-}
 
-.modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-dialog {
-  max-width: 800px;
-  margin: 1.75rem auto;
-}
-
-.modal-content {
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.modal-header {
-  border-bottom: 1px solid #ddd;
-}
-
-.modal-body p {
-  margin: 5px 0;
-}
-
-.modal-footer {
-  border-top: 1px solid #ddd;
-  text-align: right;
-}
 
 h5.modal-title {
   font-size: 18px;

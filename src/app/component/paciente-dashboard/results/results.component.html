@@ -27,7 +27,7 @@
     <tbody>
       <tr *ngFor="let resultado of resultadosFiltrados">
         <td>{{ resultado.evaluacion.test.nombre }}</td>
-        <td>{{ resultado.evaluacion.fec_realizacion| date }}</td>
+        <td>{{ resultado.estado.id_estado === 5 ?  (resultado.fec_interpretacion | date:'dd/MM/yyyy'): (resultado.evaluacion.fec_realizacion | date:'dd/MM/yyyy')}}</td> <!-- Lógica para mostrar la fecha -->
         <td>
           <button type="button" class="btn btn-success btn-sm" (click)="mostrarDetalles(resultado, 'evaluacion')">Ver Evaluación</button>
         </td>
@@ -52,11 +52,13 @@
 <div class="modal" tabindex="-1" [ngClass]="{'show': mostrarModal}" style="display: block;" *ngIf="mostrarModal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ modalTitle }}</h5>
-        <button type="button" class="btn-close" (click)="cerrarModal()">dasd</button>
-      </div>
+    
       <div class="modal-body">
+        <mat-grid-list cols="1" rowHeight="20:1" class="mat-grid-list-space">
+          <mat-grid-tile>
+            <div class="mat-grid-tile-content">{{ modalTitle }}</div>
+          </mat-grid-tile>
+        </mat-grid-list>
         <ng-container *ngIf="modalType === 'especialista'">
           <p><strong>Nombres:</strong> {{ modalData.especialista.persona.nombres }}</p>
           <p><strong>Apellidos:</strong> {{ modalData.especialista.persona.apellidos }}</p>
@@ -70,15 +72,15 @@
           <p><strong>N° preguntas:</strong> {{ modalData.evaluacion.test.n_preguntas }}</p>
           <p><strong>Versión:</strong> {{ modalData.evaluacion.test.n_version }}</p>
           <p><strong>Puntaje:</strong> {{ modalData.evaluacion.puntaje }}</p>
-          <p><strong>Fecha de realización:</strong> {{ modalData.evaluacion.fec_realizacion | date }}</p>
+          <p><strong>Fecha de realización:</strong> {{ modalData.evaluacion.fec_realizacion  | date:'dd/MM/yyyy'}}</p>
           <p><strong>Nivel de ansiedad:</strong> {{ modalData.escala.nombre }}</p>
         </ng-container>
         <ng-container *ngIf="modalType === 'observacion'">
-          <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion }}</p>
+          <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion  | date:'dd/MM/yyyy'}}</p>
           <p><strong>Interpretación del especialista:</strong> {{ modalData.observacion }}</p>
         </ng-container>
         <ng-container *ngIf="modalType === 'recomendacion'">
-          <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion }}</p>
+          <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion  | date:'dd/MM/yyyy'}}</p>
           <p><strong>Recomendaciones del especialista:</strong> {{ modalData.recomendacion }}</p>
         </ng-container>
 
