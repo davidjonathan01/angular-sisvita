@@ -5,7 +5,7 @@
   <div class="row">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title text-center">FORMULARIO DE REGISTRO DE PACIENTE</h5>
+        <h1 class="card-title text-center">Formulario de Registro del Paciente</h1>
         <form [formGroup]="pacienteForm">
           <div class="row mb-3">
             <label for="inputNombres" class="col-sm-2 col-form-label">Nombres:</label>
@@ -23,20 +23,18 @@
           </div>
           <div class="row mb-3">
             <div class="col-sm-5">
-              <label for="inputGenero" class="col-sm-2 col-form-label">Género:</label>
-              <div class="col-sm-5">
-                <select class="form-control" id="id_genero" formControlName="id_genero" required
-                  title="Seleccione su Género">
+              <div class="form-group">
+                <label for="id_genero" class="form-label">Género:</label>
+                <select class="form-control" id="id_genero" formControlName="id_genero" required title="Seleccione su Género">
                   <option value="" disabled selected>Seleccione el Género</option>
                   <option *ngFor="let genero of generos" [value]="genero.id_genero">{{ genero.nombre }}</option>
                 </select>
               </div>
             </div>
             <div class="col-sm-5">
-              <label for="inputDocIdentidad" class="col-sm-2 col-form-label">Documento de Identidad:</label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputDocIdentidad"
-                  placeholder="Consigne el Documento de Identidad" formControlName="doc_identidad">
+              <div class="form-group">
+                <label for="inputDocIdentidad" class="form-label">Documento de Identidad:</label>
+                <input type="text" class="form-control" id="inputDocIdentidad" placeholder="Consigne el Documento de Identidad" formControlName="doc_identidad">
               </div>
             </div>
           </div>
@@ -61,13 +59,13 @@
                 formControlName="email">
             </div>
           </div>
-          
+
 
           <div class="row mb-3">
             <label for="inputDepartamento" class="col-sm-2 col-form-label">Ubigeo:</label>
             <div class="col-sm-3">
-              <select id="inputDepartamento" formControlName="id_ubigeo_departamento" (change)="onDepartamentoSeleccionado($event)" required 
-              title="Seleccione el Departamento">
+              <select id="inputDepartamento" class="form-control" formControlName="id_ubigeo_departamento"
+                (change)="onDepartamentoSeleccionado($event)" required title="Seleccione el Departamento">
                 <option value="" disabled selected>Seleccione el Departamento</option>
                 <option *ngFor="let departamento of departamentos_filtrados" [value]="departamento">
                   {{ departamento }}
@@ -75,8 +73,8 @@
               </select>
             </div>
             <div class="col-sm-3">
-              <select id="inputProvincia" formControlName="id_ubigeo_provincia" (change)="onProvinciaSeleccionada($event)" required
-                title="Seleccione la Provincia">
+              <select id="inputProvincia" class="form-control" formControlName="id_ubigeo_provincia"
+                (change)="onProvinciaSeleccionada($event)" required title="Seleccione la Provincia">
                 <option value="" disabled selected>Seleccione la Provincia</option>
                 <option *ngFor="let provincia of provincias_filtradas" [value]="provincia">
                   {{ provincia }}
@@ -84,7 +82,7 @@
               </select>
             </div>
             <div class="col-sm-3">
-              <select class="inputDistrito" id="id_ubigeo-distrito" formControlName="id_ubigeo_distrito" required
+              <select class="form-control" id="inputDistrito" formControlName="id_ubigeo_distrito" required
                 title="Seleccione el Distrito">
                 <option value="" disabled selected>Seleccione el Distrito</option>
                 <option *ngFor="let distrito of distritos_filtrados" [value]="distrito">
@@ -97,7 +95,7 @@
           <div class="row mb-3">
             <label for="inputContrasenia" class="col-sm-2 col-form-label">Contraseña:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputContrasenia" placeholder="Consigne su contraseña"
+              <input type="password" class="form-control" id="inputContrasenia" placeholder="Consigne su contraseña"
                 formControlName="contrasenia">
             </div>
           </div>
