@@ -191,3 +191,15 @@
     </div>
   </div>
 </div>
+
+<!-- Botón para mostrar el mapa de calor -->
+<div class="text-center mt-4">
+  <button class="btn btn-primary" (click)="toggleMapaCalor()">Obtener Mapa de calor</button>
+</div>
+
+<!-- Mapa de calor -->
+<div *ngIf="mostrarMapaCalor" class="mt-4">
+  <google-map height="700px" width="100%" [center]="center" [zoom]="zoom">
+    <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>
+  </google-map>
+</div>

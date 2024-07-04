@@ -11,12 +11,13 @@ import { Test } from '../../../model/test';
 import { Tipo_Test } from '../../../model/tipo-test';
 import { AuthService } from '../../../services/auth.service';
 import { RealizarVigilanciaService } from '../../../services/realizar-vigilancia.service';
+import { GoogleMap, MapHeatmapLayer, GoogleMapsModule } from '@angular/google-maps';
 
 
 @Component({
   selector: 'app-realizar-vigilancia',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatGridListModule,MatIconModule],
+  imports: [CommonModule, FormsModule, MatGridListModule,MatIconModule, GoogleMap, MapHeatmapLayer, GoogleMapsModule],
   templateUrl: './realizar-vigilancia.component.html',
   styleUrls: ['./realizar-vigilancia.component.css']
 })
@@ -55,6 +56,16 @@ export class RealizarVigilanciaComponent implements OnInit {
   fechaInicio: Date | null = null;
   fechaFin: Date | null = null;
 
+  // Variables para el mapa de calor
+  mostrarMapaCalor: boolean = false;
+  center = { lat: -12.0464, lng: -77.0428 }; // Centro de Lima
+  zoom = 10;
+  heatmapOptions = {
+    radius: 60,
+    opacity: 0.6
+  };
+  heatmapData: { lat: number, lng: number }[] = [];
+
 
   constructor(private realizarVigilanciaService: RealizarVigilanciaService, private authService: AuthService) {}
 
@@ -72,6 +83,68 @@ export class RealizarVigilanciaComponent implements OnInit {
       });
     }
   }
+  /*generateHeatmapData() {
+    const points = [
+      { lat: -12.0464, lng: -77.0428 }, // Lima
+      { lat: -12.086, lng: -77.0012 }, // San Martín de Porres
+      { lat: -12.0153, lng: -77.0703 }, // San Miguel
+      { lat: -12.0433, lng: -77.0301 }, // Pueblo Libre
+      { lat: -12.0621, lng: -77.0369 }, // Breña
+      { lat: -12.0851, lng: -76.9908 }, // Los Olivos
+      { lat: -12.0721, lng: -77.0806 }, // Magdalena del Mar
+      { lat: -12.0908, lng: -77.0469 }, // Jesús María
+      { lat: -12.0773, lng: -77.0833 }, // San Isidro
+      { lat: -12.1211, lng: -77.0293 }, // Miraflores
+      { lat: -12.1393, lng: -77.0075 }, // Barranco
+      { lat: -12.1196, lng: -77.0343 }, // Surco (Santiago de Surco)
+      { lat: -12.0937, lng: -77.0011 }, // San Borja
+      { lat: -12.0566, lng: -77.0326 }, // Lince
+      { lat: -12.0965, lng: -76.962 }, // Ate
+      { lat: -12.1543, lng: -76.9758 }, // La Molina
+      { lat: -12.0704, lng: -77.1334 }, // Callao
+      { lat: -12.1078, lng: -77.0418 }, // La Victoria
+      { lat: -12.0931, lng: -77.0421 }, // Rímac
+      { lat: -12.0459, lng: -77.0312 }, // Cercado de Lima
+      { lat: -12.146, lng: -77.0194 }, // Chorrillos
+      { lat: -12.153, lng: -76.9639 }, // Cieneguilla
+      { lat: -12.215, lng: -76.9263 }, // Pachacámac
+      { lat: -12.0934, lng: -77.0529 }, // San Juan de Lurigancho
+      { lat: -12.1631, lng: -76.9755 }, // Villa El Salvador
+      { lat: -12.1292, lng: -77.015 } // Villa María del Triunfo
+    ];
+    return points;
+  }
+  // Mostrar/Ocultar el mapa de calor
+  toggleMapaCalor() {
+    this.mostrarMapaCalor = !this.mostrarMapaCalor;
+  }*/
+    generateHeatmapData() {
+      const uniqueCoordinates = new Set();
+      this.heatmapData = this.resultados
+        .map(resultado => ({
+          lat: parseFloat(resultado.evaluacion.paciente.ubigeo.latitud),
+          lng: parseFloat(resultado.evaluacion.paciente.ubigeo.longitud),
+          id: resultado.evaluacion.paciente.id_paciente  // Usamos el ID del paciente para asegurarnos de la unicidad
+        }))
+        .filter(coord => {
+          const key = `${coord.lat}-${coord.lng}`;
+          if (uniqueCoordinates.has(key)) {
+            return false;
+          } else {
+            uniqueCoordinates.add(key);
+            return true;
+          }
+        })
+        .map(coord => ({ lat: coord.lat, lng: coord.lng })); // Eliminamos el ID del paciente del objeto final
+    }
+
+  // Mostrar/Ocultar el mapa de calor
+  toggleMapaCalor() {
+    this.generateHeatmapData();
+    console.log(this.heatmapData);
+    this.mostrarMapaCalor = !this.mostrarMapaCalor;
+  }
+
 
   cargarResultados() {
     if (this.id_especialista !== null) {
@@ -437,5 +510,6 @@ export class RealizarVigilanciaComponent implements OnInit {
   compareByEscala(a: Resultado, b: Resultado): number {
     return a.escala.id_escala - b.escala.id_escala;
   }
-  
+
+
 }
