@@ -15,10 +15,11 @@
     <thead>
       <tr>
         <th>Test</th>
-        <th>Fecha Evalaucion</th>
+        <th>Fecha</th>
         <th>Evaluación</th>
         <th>Especialista</th>
         <th>Observación</th>
+        <th>Recomendaciones</th>
         <th>Invitaciones</th>
       </tr>
     </thead>
@@ -35,6 +36,9 @@
         </td>
         <td>
           <button type="button" class="btn btn-warning btn-sm" (click)="mostrarDetalles(resultado, 'observacion')">Ver Observación</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-light btn-sm" (click)="mostrarDetalles(resultado, 'recomendacion')">Ver Observación</button>
         </td>
         <td>
           <button type="button" class="btn btn-secondary btn-sm" (click)="mostrarDetalles(resultado, 'invitaciones')">Ver Invitaciones</button>
@@ -73,6 +77,11 @@
           <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion }}</p>
           <p><strong>Interpretación del especialista:</strong> {{ modalData.observacion }}</p>
         </ng-container>
+        <ng-container *ngIf="modalType === 'recomendacion'">
+          <p><strong>Fecha:</strong> {{ modalData.fec_interpretacion }}</p>
+          <p><strong>Recomendaciones del especialista:</strong> {{ modalData.recomendacion }}</p>
+        </ng-container>
+
         <ng-container *ngIf="modalType === 'invitaciones'">
           <div *ngIf="cargandoInvitaciones">Cargando invitaciones...</div>
           <div *ngIf="!cargandoInvitaciones">
