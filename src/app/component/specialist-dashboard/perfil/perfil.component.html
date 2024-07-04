@@ -3,52 +3,52 @@
   
       <div class="row">
         <div class="col-md-12">
-          <p class="text-center">Información general del especialista</p>
+          <h2 class="text-center">Información general del especialista</h2>
         </div>
       </div>
   
       <div class="row">
         <div class="col-md-12">
-          <p class="text-justify">- Nombres: {{ especialista?.persona?.nombres }}</p>
+          <p class="text-justify"><b>- Nombres:</b> {{ especialista?.persona?.nombres }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Apellidos: {{ especialista?.persona?.apellidos }}</p>
+          <p class="text-justify"><b>- Apellidos:</b> {{ especialista?.persona?.apellidos }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Género: {{ especialista?.persona?.genero?.nombre }}</p>
+          <p class="text-justify"><b>- Género:</b> {{ especialista?.persona?.genero?.nombre }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Documento de identidad: {{ especialista?.persona?.doc_identidad }}</p>
+          <p class="text-justify"><b>- Documento de identidad:</b> {{ especialista?.persona?.doc_identidad }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Fecha de nacimiento: {{ especialista?.persona?.fec_nacimiento }}</p>
+          <p class="text-justify"><b>- Fecha de nacimiento:</b> {{ especialista?.persona?.fec_nacimiento }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Número de teléfono: {{ especialista?.persona?.num_telefono }}</p>
+          <p class="text-justify"><b>- Número de teléfono:</b> {{ especialista?.persona?.num_telefono }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Correo electrónico: {{ especialista?.usuario?.email }}</p>
-        </div>
-      </div>
-  
-      <div class="row">
-        <div class="col-md-12">
-          <p class="text-center">Información específica del especialista</p>
+          <p class="text-justify"><b>- Correo electrónico:</b> {{ especialista?.usuario?.email }}</p>
         </div>
       </div>
   
       <div class="row">
         <div class="col-md-12">
-          <p class="text-justify">- Licencia: {{ especialista?.n_licencia }}</p>
+          <h2 class="text-center">Información específica del especialista</h2>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-justify"><b>- Licencia:</b> {{ especialista?.n_licencia }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Especialidad: {{ especialista?.especialidad?.titulo }}</p>
+          <p class="text-justify"><b>- Especialidad:</b> {{ especialista?.especialidad?.titulo }}</p>
         </div>
         <div class="col-md-12">
-            <p class="text-justify">- Especialidad: {{ especialista?.especialidad?.descripcion }}</p>
+            <p class="text-justify"><b>- Especialidad:</b> {{ especialista?.especialidad?.descripcion }}</p>
         </div>
         <div class="col-md-12">
-          <p class="text-justify">- Activo: {{ especialista?.activo ? 'Sí' : 'No' }}</p>
+          <p class="text-justify"><b>- Activo:</b> {{ especialista?.activo ? 'Sí' : 'No' }}</p>
         </div>
       </div>
     </div>

@@ -1,0 +1,51 @@
+/* Estilos generales */
+body {
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #004d40; /* Texto color verde oscuro */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #d7f2f6; /* Fondo blanco para el contenedor */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+.text-center {
+    text-align: center;
+    font-weight: bold;
+    color: #00796b; /* Color verde azulado */
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}
