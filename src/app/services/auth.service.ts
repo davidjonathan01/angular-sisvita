@@ -53,32 +53,6 @@ export class AuthService {
     );
   }
   
-  getDepartamentosUnicos(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.BASE_URL}/identificar_ubigeo_routes/departamentos_unicos`).pipe(
-      catchError(error => {
-        console.error(error);
-        throw 'Error al obtener departamentos únicos: ' + error.message;
-      })
-    );
-  }
-  
-  getProvinciasUnicas(departamento: string): Observable<string[]> {
-    return this.http.post<string[]>(`${this.BASE_URL}/identificar_ubigeo_routes/provincias_unicas`, { departamento }).pipe(
-      catchError(error => {
-        console.error(error);
-        throw 'Error al obtener provincias únicas: ' + error.message;
-      })
-    );
-  }
-
-  getDistritosUnicos(departamento: string, provincia: string): Observable<string[]> {
-    return this.http.post<string[]>(`${this.BASE_URL}/identificar_ubigeo_routes/distritos_unicos`, { departamento, provincia }).pipe(
-      catchError(error => {
-        console.error(error);
-        throw 'Error al obtener distritos únicos: ' + error.message;
-      })
-    );
-  }
 
 
   getCarreras(): Observable<Carrera[]> {
