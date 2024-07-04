@@ -170,11 +170,12 @@
 <div class="modal" tabindex="-1" [ngClass]="{'show': mostrarModalNotificacion}" style="display: block;" *ngIf="mostrarModalNotificacion">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Notificar</h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModalNotificacion()"></button>
-      </div>
       <div class="modal-body">
+        <mat-grid-list cols="1" rowHeight="20:1" class="mat-grid-list-space">
+          <mat-grid-tile>
+            <div class="mat-grid-tile-content">Notificar</div>
+          </mat-grid-tile>
+        </mat-grid-list>
         <div>
           <input type="checkbox" id="correo" name="correo" [(ngModel)]="notificacionSeleccionada.correo">
           <label for="correo">Correo electrónico</label>
